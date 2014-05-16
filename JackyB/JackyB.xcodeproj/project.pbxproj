@@ -1,0 +1,477 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		56EF2C0D19263A7B00CC9963 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56EF2C0C19263A7B00CC9963 /* Foundation.framework */; };
+		56EF2C0F19263A7B00CC9963 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56EF2C0E19263A7B00CC9963 /* CoreGraphics.framework */; };
+		56EF2C1119263A7B00CC9963 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56EF2C1019263A7B00CC9963 /* UIKit.framework */; };
+		56EF2C1319263A7B00CC9963 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56EF2C1219263A7B00CC9963 /* CoreData.framework */; };
+		56EF2C1919263A7B00CC9963 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 56EF2C1719263A7B00CC9963 /* InfoPlist.strings */; };
+		56EF2C1B19263A7B00CC9963 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 56EF2C1A19263A7B00CC9963 /* main.m */; };
+		56EF2C1F19263A7B00CC9963 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 56EF2C1E19263A7B00CC9963 /* AppDelegate.m */; };
+		56EF2C2219263A7B00CC9963 /* JackyB.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 56EF2C2019263A7B00CC9963 /* JackyB.xcdatamodeld */; };
+		56EF2C2419263A7B00CC9963 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56EF2C2319263A7B00CC9963 /* Images.xcassets */; };
+		56EF2C2B19263A7B00CC9963 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56EF2C2A19263A7B00CC9963 /* XCTest.framework */; };
+		56EF2C2C19263A7B00CC9963 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56EF2C0C19263A7B00CC9963 /* Foundation.framework */; };
+		56EF2C2D19263A7B00CC9963 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56EF2C1019263A7B00CC9963 /* UIKit.framework */; };
+		56EF2C2E19263A7B00CC9963 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56EF2C1219263A7B00CC9963 /* CoreData.framework */; };
+		56EF2C3619263A7B00CC9963 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 56EF2C3419263A7B00CC9963 /* InfoPlist.strings */; };
+		56EF2C3819263A7B00CC9963 /* JackyBTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 56EF2C3719263A7B00CC9963 /* JackyBTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		56EF2C2F19263A7B00CC9963 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 56EF2C0119263A7B00CC9963 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 56EF2C0819263A7B00CC9963;
+			remoteInfo = JackyB;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		56EF2C0919263A7B00CC9963 /* JackyB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JackyB.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		56EF2C0C19263A7B00CC9963 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		56EF2C0E19263A7B00CC9963 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		56EF2C1019263A7B00CC9963 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		56EF2C1219263A7B00CC9963 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		56EF2C1619263A7B00CC9963 /* JackyB-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JackyB-Info.plist"; sourceTree = "<group>"; };
+		56EF2C1819263A7B00CC9963 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		56EF2C1A19263A7B00CC9963 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		56EF2C1C19263A7B00CC9963 /* JackyB-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JackyB-Prefix.pch"; sourceTree = "<group>"; };
+		56EF2C1D19263A7B00CC9963 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		56EF2C1E19263A7B00CC9963 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		56EF2C2119263A7B00CC9963 /* JackyB.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JackyB.xcdatamodel; sourceTree = "<group>"; };
+		56EF2C2319263A7B00CC9963 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		56EF2C2919263A7B00CC9963 /* JackyBTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JackyBTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		56EF2C2A19263A7B00CC9963 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		56EF2C3319263A7B00CC9963 /* JackyBTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JackyBTests-Info.plist"; sourceTree = "<group>"; };
+		56EF2C3519263A7B00CC9963 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		56EF2C3719263A7B00CC9963 /* JackyBTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JackyBTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		56EF2C0619263A7B00CC9963 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56EF2C0F19263A7B00CC9963 /* CoreGraphics.framework in Frameworks */,
+				56EF2C1319263A7B00CC9963 /* CoreData.framework in Frameworks */,
+				56EF2C1119263A7B00CC9963 /* UIKit.framework in Frameworks */,
+				56EF2C0D19263A7B00CC9963 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56EF2C2619263A7B00CC9963 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56EF2C2B19263A7B00CC9963 /* XCTest.framework in Frameworks */,
+				56EF2C2E19263A7B00CC9963 /* CoreData.framework in Frameworks */,
+				56EF2C2D19263A7B00CC9963 /* UIKit.framework in Frameworks */,
+				56EF2C2C19263A7B00CC9963 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		56EF2C0019263A7B00CC9963 = {
+			isa = PBXGroup;
+			children = (
+				56EF2C1419263A7B00CC9963 /* JackyB */,
+				56EF2C3119263A7B00CC9963 /* JackyBTests */,
+				56EF2C0B19263A7B00CC9963 /* Frameworks */,
+				56EF2C0A19263A7B00CC9963 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		56EF2C0A19263A7B00CC9963 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				56EF2C0919263A7B00CC9963 /* JackyB.app */,
+				56EF2C2919263A7B00CC9963 /* JackyBTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		56EF2C0B19263A7B00CC9963 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				56EF2C0C19263A7B00CC9963 /* Foundation.framework */,
+				56EF2C0E19263A7B00CC9963 /* CoreGraphics.framework */,
+				56EF2C1019263A7B00CC9963 /* UIKit.framework */,
+				56EF2C1219263A7B00CC9963 /* CoreData.framework */,
+				56EF2C2A19263A7B00CC9963 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		56EF2C1419263A7B00CC9963 /* JackyB */ = {
+			isa = PBXGroup;
+			children = (
+				56EF2C1D19263A7B00CC9963 /* AppDelegate.h */,
+				56EF2C1E19263A7B00CC9963 /* AppDelegate.m */,
+				56EF2C2319263A7B00CC9963 /* Images.xcassets */,
+				56EF2C2019263A7B00CC9963 /* JackyB.xcdatamodeld */,
+				56EF2C1519263A7B00CC9963 /* Supporting Files */,
+			);
+			path = JackyB;
+			sourceTree = "<group>";
+		};
+		56EF2C1519263A7B00CC9963 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				56EF2C1619263A7B00CC9963 /* JackyB-Info.plist */,
+				56EF2C1719263A7B00CC9963 /* InfoPlist.strings */,
+				56EF2C1A19263A7B00CC9963 /* main.m */,
+				56EF2C1C19263A7B00CC9963 /* JackyB-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		56EF2C3119263A7B00CC9963 /* JackyBTests */ = {
+			isa = PBXGroup;
+			children = (
+				56EF2C3719263A7B00CC9963 /* JackyBTests.m */,
+				56EF2C3219263A7B00CC9963 /* Supporting Files */,
+			);
+			path = JackyBTests;
+			sourceTree = "<group>";
+		};
+		56EF2C3219263A7B00CC9963 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				56EF2C3319263A7B00CC9963 /* JackyBTests-Info.plist */,
+				56EF2C3419263A7B00CC9963 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		56EF2C0819263A7B00CC9963 /* JackyB */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 56EF2C3B19263A7B00CC9963 /* Build configuration list for PBXNativeTarget "JackyB" */;
+			buildPhases = (
+				56EF2C0519263A7B00CC9963 /* Sources */,
+				56EF2C0619263A7B00CC9963 /* Frameworks */,
+				56EF2C0719263A7B00CC9963 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JackyB;
+			productName = JackyB;
+			productReference = 56EF2C0919263A7B00CC9963 /* JackyB.app */;
+			productType = "com.apple.product-type.application";
+		};
+		56EF2C2819263A7B00CC9963 /* JackyBTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 56EF2C3E19263A7B00CC9963 /* Build configuration list for PBXNativeTarget "JackyBTests" */;
+			buildPhases = (
+				56EF2C2519263A7B00CC9963 /* Sources */,
+				56EF2C2619263A7B00CC9963 /* Frameworks */,
+				56EF2C2719263A7B00CC9963 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				56EF2C3019263A7B00CC9963 /* PBXTargetDependency */,
+			);
+			name = JackyBTests;
+			productName = JackyBTests;
+			productReference = 56EF2C2919263A7B00CC9963 /* JackyBTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		56EF2C0119263A7B00CC9963 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Romain GABEL";
+				TargetAttributes = {
+					56EF2C2819263A7B00CC9963 = {
+						TestTargetID = 56EF2C0819263A7B00CC9963;
+					};
+				};
+			};
+			buildConfigurationList = 56EF2C0419263A7B00CC9963 /* Build configuration list for PBXProject "JackyB" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 56EF2C0019263A7B00CC9963;
+			productRefGroup = 56EF2C0A19263A7B00CC9963 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				56EF2C0819263A7B00CC9963 /* JackyB */,
+				56EF2C2819263A7B00CC9963 /* JackyBTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		56EF2C0719263A7B00CC9963 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56EF2C1919263A7B00CC9963 /* InfoPlist.strings in Resources */,
+				56EF2C2419263A7B00CC9963 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56EF2C2719263A7B00CC9963 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56EF2C3619263A7B00CC9963 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		56EF2C0519263A7B00CC9963 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56EF2C2219263A7B00CC9963 /* JackyB.xcdatamodeld in Sources */,
+				56EF2C1F19263A7B00CC9963 /* AppDelegate.m in Sources */,
+				56EF2C1B19263A7B00CC9963 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56EF2C2519263A7B00CC9963 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56EF2C3819263A7B00CC9963 /* JackyBTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		56EF2C3019263A7B00CC9963 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 56EF2C0819263A7B00CC9963 /* JackyB */;
+			targetProxy = 56EF2C2F19263A7B00CC9963 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		56EF2C1719263A7B00CC9963 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				56EF2C1819263A7B00CC9963 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		56EF2C3419263A7B00CC9963 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				56EF2C3519263A7B00CC9963 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		56EF2C3919263A7B00CC9963 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		56EF2C3A19263A7B00CC9963 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		56EF2C3C19263A7B00CC9963 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JackyB/JackyB-Prefix.pch";
+				INFOPLIST_FILE = "JackyB/JackyB-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		56EF2C3D19263A7B00CC9963 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JackyB/JackyB-Prefix.pch";
+				INFOPLIST_FILE = "JackyB/JackyB-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		56EF2C3F19263A7B00CC9963 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/JackyB.app/JackyB";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JackyB/JackyB-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "JackyBTests/JackyBTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		56EF2C4019263A7B00CC9963 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/JackyB.app/JackyB";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JackyB/JackyB-Prefix.pch";
+				INFOPLIST_FILE = "JackyBTests/JackyBTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		56EF2C0419263A7B00CC9963 /* Build configuration list for PBXProject "JackyB" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				56EF2C3919263A7B00CC9963 /* Debug */,
+				56EF2C3A19263A7B00CC9963 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		56EF2C3B19263A7B00CC9963 /* Build configuration list for PBXNativeTarget "JackyB" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				56EF2C3C19263A7B00CC9963 /* Debug */,
+				56EF2C3D19263A7B00CC9963 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		56EF2C3E19263A7B00CC9963 /* Build configuration list for PBXNativeTarget "JackyBTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				56EF2C3F19263A7B00CC9963 /* Debug */,
+				56EF2C4019263A7B00CC9963 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		56EF2C2019263A7B00CC9963 /* JackyB.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				56EF2C2119263A7B00CC9963 /* JackyB.xcdatamodel */,
+			);
+			currentVersion = 56EF2C2119263A7B00CC9963 /* JackyB.xcdatamodel */;
+			path = JackyB.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 56EF2C0119263A7B00CC9963 /* Project object */;
+}
