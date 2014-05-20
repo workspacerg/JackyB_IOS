@@ -41,6 +41,7 @@ enum sign{
     
     [_getCardButton setEnabled:false];
     [_endGameButton setEnabled:false];
+    [_doubleButton setEnabled:false];
     _miseTF.text = @"20";
    
     
@@ -66,6 +67,7 @@ enum sign{
         
         [_getCardButton setEnabled:true];
         [_endGameButton setEnabled:true];
+        [_doubleButton setEnabled:true];
         
         _displayWinner.text = @"In game";
         
@@ -116,6 +118,7 @@ enum sign{
     if([_scoreUser.text intValue] == 21)
     {
         [_getCardButton setEnabled:false];
+        [_doubleButton setEnabled:false];
     }
     
     if ([self theGameIsOver]) {
@@ -156,6 +159,7 @@ enum sign{
     [_miseButton setEnabled:true];
     [_endGameButton setEnabled:false];
     [_getCardButton setEnabled:false];
+    [_doubleButton setEnabled:false];
     
     
 }
@@ -167,6 +171,18 @@ enum sign{
     
 }
 
+- (IBAction)doubleMise:(id)sender {
+    int tmp = [_currentMise.text intValue];
+    
+    [self updateCurrency:tmp AndSign:(enum sign*)enlever];
+    
+    tmp *= 2 ;
+    _currentMise.text = [NSString stringWithFormat:@"%d", tmp ];
+
+    
+    [self getNewCards:nil];
+    
+}
 
 - (void) didReceiveMemoryWarning
 {
@@ -178,6 +194,7 @@ enum sign{
 - (IBAction)endGameButton:(id)sender {
     
     [_getCardButton setEnabled:false];
+    [_doubleButton setEnabled:false];
     
     [_comPlayer addCard:[[Carte alloc] init]];
 

@@ -28,6 +28,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *miseButton;
 @property (weak, nonatomic) IBOutlet UIButton *endGameButton;
 @property (nonatomic) enum resultat * resultGame;
+@property (weak, nonatomic) IBOutlet UIButton *doubleButton;
 
 
 @property (weak, nonatomic) IBOutlet UILabel *userCartesLabel;
