@@ -21,7 +21,7 @@ enum TypePlayer {
 @interface Player : NSObject
 
 @property (nonatomic) NSString * name;
-@property (nonatomic) NSNumber * money;
+@property (nonatomic) int  money;
 @property (nonatomic) int  joker;
 @property (nonatomic) int  jokerUse;
 @property (nonatomic) enum TypePlayer * type;

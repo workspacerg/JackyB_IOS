@@ -24,7 +24,7 @@
     if (self) {
         _type = userType;
         _name = name_;
-        _money = [NSNumber numberWithInt:400];
+        _money = 400;
         _joker = 0;
         _cartes = [[NSMutableArray alloc] init];
     }
@@ -40,7 +40,7 @@
     {
         _type = (enum TypePlayer *) comType;
         _name = @"Com";
-        _money = [NSNumber numberWithInt:0];
+        _money = 0;
         _joker = 0;
         _cartes = [[NSMutableArray alloc] init];
     }

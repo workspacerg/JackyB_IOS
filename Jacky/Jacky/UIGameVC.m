@@ -37,7 +37,7 @@ enum sign{
     
     _userPlayer = [[Player alloc] initWithName:@"Romain"];
     _comPlayer  = [[Player alloc] initCom];
-    _MoneyValue.text = [[_userPlayer money] stringValue];
+    _MoneyValue.text = [NSString stringWithFormat:@"%d", [_userPlayer money]];
     
     [_getCardButton setEnabled:false];
     [_endGameButton setEnabled:false];
@@ -73,7 +73,9 @@ enum sign{
         
         _currentMise.text = _miseTF.text;
         
-        _MoneyValue.text = [NSString stringWithFormat:@"%d",[_MoneyValue.text intValue] - [_currentMise.text intValue] ];
+       // _MoneyValue.text = [NSString stringWithFormat:@"%d",[_MoneyValue.text intValue] - [_currentMise.text intValue] ];
+        
+        [self updateCurrency:[_currentMise.text intValue] AndSign:enlever];
         
         [self intitialiseGame];
 
@@ -161,6 +163,8 @@ enum sign{
     [_getCardButton setEnabled:false];
     [_doubleButton setEnabled:false];
     
+    NSLog(@"money = %d", [_userPlayer money]);
+    
     
 }
 
@@ -221,6 +225,8 @@ enum sign{
         tmp -= current ;
     }
     _MoneyValue.text = [NSString stringWithFormat:@"%d", tmp];
+    NSLog(@"upd current");
+    _userPlayer.money = tmp;
 
 }
 /*
