@@ -54,6 +54,7 @@ enum sign{
     
     [_getCardButton setEnabled:false];
     [_endGameButton setEnabled:false];
+    _miseTF.text = @"20";
    
     
 }
@@ -157,10 +158,6 @@ enum sign{
         [_miseButton setEnabled:true];
         [_endGameButton setEnabled:false];
     }
-    
-    
-    
-    
 }
 
 -(void) winGame
@@ -192,7 +189,6 @@ enum sign{
     else{
         tmp -= current ;
     }
-    
     _MoneyValue.text = [NSString stringWithFormat:@"%d", tmp];
 
 }
