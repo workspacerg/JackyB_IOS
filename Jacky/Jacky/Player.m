@@ -62,4 +62,11 @@
     return result;
 }
 
+- (void) cleanCard
+{
+
+    [_cartes removeAllObjects];
+
+}
+
 @end

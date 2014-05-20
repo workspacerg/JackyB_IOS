@@ -33,6 +33,7 @@ enum TypePlayer {
 
 - (void) addCard: (Carte * ) Card;
 - (int) getValueOfCards;
+- (void) cleanCard;
 
 
 @end

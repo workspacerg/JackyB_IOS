@@ -21,6 +21,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *scoreCom;
 @property (weak, nonatomic) IBOutlet UITextField *miseTF;
 @property (weak, nonatomic) IBOutlet UILabel *currentMise;
+@property (weak, nonatomic) IBOutlet UIButton *miseButton;
+@property (weak, nonatomic) IBOutlet UIButton *endGameButton;
 
 @end
 
@@ -44,13 +46,23 @@
     _MoneyValue.text = [[_userPlayer money] stringValue];
     
     [_getCardButton setEnabled:false];
+    [_endGameButton setEnabled:false];
    
     
 }
 - (IBAction)Miser:(id)sender {
     id button = sender;
     [button setEnabled:false];
+    
+    _scoreUser.text = @"0";
+    _scoreCom.text  = @"0";
+    
+    [_userPlayer cleanCard];
+    [_comPlayer cleanCard];
+    
+    
     [_getCardButton setEnabled:true];
+    [_endGameButton setEnabled:true];
     _currentMise.text = _miseTF.text;
     NSLog(@"Test");
     [self intitialiseGame];
@@ -75,7 +87,10 @@
     if ([Rules valueIsOutOfLimit:[_scoreUser.text intValue]]) {
         
         _displayWinner.text = @"You Loose";
+        
         [_getCardButton setEnabled:false];
+        [_endGameButton setEnabled:false];
+        [_miseButton setEnabled:true];
     }
 }
 
@@ -101,6 +116,8 @@
     if ([_scoreCom.text intValue] < [_scoreUser.text intValue]) {
         [self endGameButton:nil];
     }
+    
+    
     if ([_scoreCom.text intValue] > [_scoreUser.text intValue]) {
         _displayWinner.text =@"You Loose";
     }
@@ -111,6 +128,8 @@
         _displayWinner.text = @"Nobody Win";
     }
     
+    [_miseButton setEnabled:true];
+    [_endGameButton setEnabled:false];
     
 
     
