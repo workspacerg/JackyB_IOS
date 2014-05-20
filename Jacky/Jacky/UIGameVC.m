@@ -8,6 +8,13 @@
 
 #import "UIGameVC.h"
 
+enum sign{
+    
+    ajouter,
+    enlever
+    
+};
+
 @interface UIGameVC ()
 
 @property (nonatomic) Player * userPlayer;
@@ -51,22 +58,40 @@
     
 }
 - (IBAction)Miser:(id)sender {
-    id button = sender;
-    [button setEnabled:false];
-    
-    _scoreUser.text = @"0";
-    _scoreCom.text  = @"0";
-    
-    [_userPlayer cleanCard];
-    [_comPlayer cleanCard];
+
     
     
-    [_getCardButton setEnabled:true];
-    [_endGameButton setEnabled:true];
-    _currentMise.text = _miseTF.text;
-    NSLog(@"Test");
-    [self intitialiseGame];
-}
+    if ([_miseTF.text intValue] > [_MoneyValue.text intValue] || [_miseTF.text intValue] == 0) {
+        
+        _displayWinner.text = @"You can't... ! ";
+        
+    }
+    else
+    {
+        id button = sender;
+        [button setEnabled:false];
+        _scoreUser.text = @"0";
+        _scoreCom.text  = @"0";
+        
+        [_userPlayer cleanCard];
+        [_comPlayer cleanCard];
+        
+        
+        [_getCardButton setEnabled:true];
+        [_endGameButton setEnabled:true];
+        
+        _displayWinner.text = @"In game";
+        
+        _currentMise.text = _miseTF.text;
+        
+        _MoneyValue.text = [NSString stringWithFormat:@"%d",[_MoneyValue.text intValue] - [_currentMise.text intValue] ]  ;
+        
+        [self intitialiseGame];
+
+        
+    }
+    
+    }
 
 - (void) intitialiseGame
 {
@@ -86,7 +111,7 @@
     
     if ([Rules valueIsOutOfLimit:[_scoreUser.text intValue]]) {
         
-        _displayWinner.text = @"You Loose";
+        [self looseGame];
         
         [_getCardButton setEnabled:false];
         [_endGameButton setEnabled:false];
@@ -111,28 +136,65 @@
     [_getCardButton setEnabled:false];
     
     [_comPlayer addCard:[[Carte alloc] init]];
+
     [self updateScore];
     
     if ([_scoreCom.text intValue] < [_scoreUser.text intValue]) {
         [self endGameButton:nil];
     }
-    
-    
-    if ([_scoreCom.text intValue] > [_scoreUser.text intValue]) {
-        _displayWinner.text =@"You Loose";
+    else{
+        
+        if ([_scoreCom.text intValue] > [_scoreUser.text intValue]) {
+            [self looseGame];
+        }
+        if ([_scoreCom.text intValue] > 21) {
+            [self winGame];
+        }
+        if ([_scoreCom.text intValue] == [_scoreUser.text intValue]) {
+            [self nobodyWin];
+        }
+        
+        [_miseButton setEnabled:true];
+        [_endGameButton setEnabled:false];
     }
-    if ([_scoreCom.text intValue] > 21) {
-        _displayWinner.text =@"You Win";
-    }
-    if ([_scoreCom.text intValue] == [_scoreUser.text intValue]) {
-        _displayWinner.text = @"Nobody Win";
-    }
     
-    [_miseButton setEnabled:true];
-    [_endGameButton setEnabled:false];
     
+    
+    
+}
 
+-(void) winGame
+{
+    _displayWinner.text =@"You Win";
+    [self updateCurrency:[_currentMise.text intValue]*2 AndSign:ajouter];
     
+}
+
+-(void) looseGame
+{
+    _displayWinner.text =@"You Loose";
+}
+
+-(void) nobodyWin
+{
+    _displayWinner.text = @"Nobody Win";
+    [self updateCurrency:[_currentMise.text intValue] AndSign:ajouter];
+}
+
+- (void) updateCurrency: (int) current AndSign: (enum signe *) sign
+{
+    int tmp = [_MoneyValue.text intValue];
+    
+    if (sign == ajouter) {
+       
+        tmp += current ;
+    }
+    else{
+        tmp -= current ;
+    }
+    
+    _MoneyValue.text = [NSString stringWithFormat:@"%d", tmp];
+
 }
 
 /*
