@@ -11,6 +11,10 @@
 
 
 @implementation Player
+{
+    int result;
+    
+}
 
 
 - (id)initWithName:(NSString *)name_
@@ -55,13 +59,15 @@
         
         _joker++;
     }
+    
     [_cartes addObject:Card];
 }
 
 - (int) getValueOfCards
 {
     
-    int result = 0;    
+    result = 0;
+    
     for (int i = 0 ; i < [_cartes count]; i++) {
         result += [[[_cartes objectAtIndex:i] valueCard] intValue];
     }
@@ -71,6 +77,7 @@
         if (_joker > 0 ) {
             [self useJoker];
         }
+        
     }
     
     result -= (10*_jokerUse);
@@ -92,7 +99,10 @@
     
     _jokerUse++;
     _joker--;
+    
 
 }
+
+
 
 @end

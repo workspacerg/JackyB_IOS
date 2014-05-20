@@ -29,6 +29,12 @@
 @property (weak, nonatomic) IBOutlet UIButton *endGameButton;
 @property (nonatomic) enum resultat * resultGame;
 
+
+@property (weak, nonatomic) IBOutlet UILabel *userCartesLabel;
+@property (weak, nonatomic) IBOutlet UILabel *comCartesLabel;
+
+
+
 - (IBAction)Miser:(id)sender ;
 - (IBAction)endGameButton:(id)sender;
 - (void) updateScore;

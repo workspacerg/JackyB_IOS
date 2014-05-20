@@ -98,6 +98,21 @@ enum sign{
     _scoreUser.text = [[NSNumber numberWithInt:[_userPlayer getValueOfCards]] stringValue];
     _scoreCom.text  = [[NSNumber numberWithInt:[_comPlayer getValueOfCards]] stringValue];
     
+    _userCartesLabel.text = @"" ;
+    _comCartesLabel.text = @"" ;
+    
+    for (int i = 0; i < (int) [_userPlayer.cartes count ]; i++) {
+        
+        _userCartesLabel.text = [NSString stringWithFormat:@"%@ %@", _userCartesLabel.text, [[_userPlayer.cartes objectAtIndex:i] number]];
+        
+    }
+    
+    for (int i = 0; i < (int) [_comPlayer.cartes count ]; i++) {
+        
+        _comCartesLabel.text = [NSString stringWithFormat:@"%@ %@", _comCartesLabel.text, [[_comPlayer.cartes objectAtIndex:i] number]];
+        
+    }
+    
     if([_scoreUser.text intValue] == 21)
     {
         [_getCardButton setEnabled:false];
@@ -148,6 +163,7 @@ enum sign{
 - (IBAction)getNewCards:(id)sender {
     [_userPlayer addCard:[[Carte alloc] init]];
     [self updateScore];
+    
     
 }
 
