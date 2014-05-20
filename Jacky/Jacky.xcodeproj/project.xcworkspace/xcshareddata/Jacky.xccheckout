@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>59AA4912-4A95-4F58-A372-6CE042CA2F0D</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Jacky</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>7B3D3981-5AE5-4A4C-9984-54FF7ABB6F4E</key>
+		<string>https://github.com/workspacerg/JackyB_IOS.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Jacky/Jacky.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>7B3D3981-5AE5-4A4C-9984-54FF7ABB6F4E</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/workspacerg/JackyB_IOS.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>7B3D3981-5AE5-4A4C-9984-54FF7ABB6F4E</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>7B3D3981-5AE5-4A4C-9984-54FF7ABB6F4E</string>
+			<key>IDESourceControlWCCName</key>
+			<string>JackyB</string>
+		</dict>
+	</array>
+</dict>
+</plist>
