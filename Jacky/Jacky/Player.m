@@ -33,7 +33,7 @@
     
     if (self)
     {
-        _type = comType;
+        _type = (enum TypePlayer *) comType;
         _name = @"Com";
         _money = [NSNumber numberWithInt:0];
         _joker = 0;

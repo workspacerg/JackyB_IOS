@@ -37,6 +37,17 @@
                BlueprintName = "JackyTests"
                ReferencedContainer = "container:Jacky.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "JackyTests">
+               </Test>
+               <Test
+                  Identifier = "testCarte">
+               </Test>
+               <Test
+                  Identifier = "testPlayer">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
       <MacroExpansion>

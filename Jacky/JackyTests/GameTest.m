@@ -37,7 +37,7 @@
     [super tearDown];
 }
 
-
+#pragma mark test Simple
 - (void)test1Win
 {
     // user = 20
@@ -62,17 +62,17 @@
     
     
     
-    XCTAssertTrue((int)result == userWin, @"User don't win");
+    XCTAssertTrue((int)result == userWin);
 }
 
 - (void)test1Loose
 {
-    // user = 20
+    // user = 18
     [_game.userPlayer addCard:[[Carte alloc] initWithColor:coeur Number:[NSNumber numberWithInt:5] Value:[NSNumber numberWithInt:5]]];
     [_game.userPlayer addCard:[[Carte alloc] initWithColor:coeur Number:[NSNumber numberWithInt:10] Value:[NSNumber numberWithInt:10]]];
     [_game.userPlayer addCard:[[Carte alloc] initWithColor:coeur Number:[NSNumber numberWithInt:3] Value:[NSNumber numberWithInt:3]]];
     
-    // com = 27
+    // com = 19
     [_game.comPlayer addCard:[[Carte alloc] initWithColor:coeur Number:[NSNumber numberWithInt:9] Value:[NSNumber numberWithInt:9]]];
     [_game.comPlayer addCard:[[Carte alloc] initWithColor:coeur Number:[NSNumber numberWithInt:10] Value:[NSNumber numberWithInt:10]]];
     
@@ -88,18 +88,18 @@
     
     
     
-    XCTAssertTrue((int)result == comWin, @"User don't win");
+    XCTAssertTrue((int)result == comWin);
 }
 
 - (void)test1NoWinner
 {
-    // user = 20
+    // user = 19
     [_game.userPlayer addCard:[[Carte alloc] initWithColor:coeur Number:[NSNumber numberWithInt:5] Value:[NSNumber numberWithInt:5]]];
     [_game.userPlayer addCard:[[Carte alloc] initWithColor:coeur Number:[NSNumber numberWithInt:10] Value:[NSNumber numberWithInt:10]]];
     [_game.userPlayer addCard:[[Carte alloc] initWithColor:coeur Number:[NSNumber numberWithInt:3] Value:[NSNumber numberWithInt:3]]];
         [_game.userPlayer addCard:[[Carte alloc] initWithColor:coeur Number:[NSNumber numberWithInt:1] Value:[NSNumber numberWithInt:1]]];
     
-    // com = 27
+    // com = 19
     [_game.comPlayer addCard:[[Carte alloc] initWithColor:coeur Number:[NSNumber numberWithInt:9] Value:[NSNumber numberWithInt:9]]];
     [_game.comPlayer addCard:[[Carte alloc] initWithColor:coeur Number:[NSNumber numberWithInt:10] Value:[NSNumber numberWithInt:10]]];
     
@@ -115,7 +115,87 @@
     
     
     
-    XCTAssertTrue((int)result == noWiner, @"User don't win");
+    XCTAssertTrue((int)result == noWiner);
+}
+
+#pragma mark test 21
+- (void)test2Win
+{
+    // user = 21
+    [_game.userPlayer addCard:[[Carte alloc] initWithColor:coeur Number:[NSNumber numberWithInt:5] Value:[NSNumber numberWithInt:9]]];
+    [_game.userPlayer addCard:[[Carte alloc] initWithColor:coeur Number:[NSNumber numberWithInt:10] Value:[NSNumber numberWithInt:9]]];
+    [_game.userPlayer addCard:[[Carte alloc] initWithColor:coeur Number:[NSNumber numberWithInt:3] Value:[NSNumber numberWithInt:3]]];
+
+    
+    // com = 28
+    [_game.comPlayer addCard:[[Carte alloc] initWithColor:coeur Number:[NSNumber numberWithInt:9] Value:[NSNumber numberWithInt:9]]];
+    [_game.comPlayer addCard:[[Carte alloc] initWithColor:coeur Number:[NSNumber numberWithInt:9] Value:[NSNumber numberWithInt:9]]];
+    [_game.comPlayer addCard:[[Carte alloc] initWithColor:coeur Number:[NSNumber numberWithInt:10] Value:[NSNumber numberWithInt:10]]];
+    
+    
+    enum resultat * result = [Rules whoIsTheWinnerBetweenUser:[_game.userPlayer getValueOfCards] AndCom:[_game.comPlayer getValueOfCards]];
+    
+    NSLog(@"---------------------------------------------");
+    //    NSLog(@"user valueOfCard : %d",[_game.userPlayer getValueOfCards]);
+    //    NSLog(@"com valueOfCard : %d",[_game.comPlayer getValueOfCards]);
+    //    NSLog(@"result : %d", (int) result);
+    //    NSLog(@"userWin : %d", (int) userWin);
+    NSLog(@"---------------------------------------------");
+    
+    XCTAssertTrue((int)result == userWin);
+}
+
+- (void)test2Loose
+{
+    // user = 19
+    [_game.userPlayer addCard:[[Carte alloc] initWithColor:coeur Number:[NSNumber numberWithInt:5] Value:[NSNumber numberWithInt:10]]];
+    [_game.userPlayer addCard:[[Carte alloc] initWithColor:coeur Number:[NSNumber numberWithInt:10] Value:[NSNumber numberWithInt:9]]];
+
+    
+    
+    // com = 21
+    [_game.comPlayer addCard:[[Carte alloc] initWithColor:coeur Number:[NSNumber numberWithInt:9] Value:[NSNumber numberWithInt:9]]];
+    [_game.comPlayer addCard:[[Carte alloc] initWithColor:coeur Number:[NSNumber numberWithInt:9] Value:[NSNumber numberWithInt:9]]];
+    [_game.comPlayer addCard:[[Carte alloc] initWithColor:coeur Number:[NSNumber numberWithInt:10] Value:[NSNumber numberWithInt:3]]];
+    
+    
+    enum resultat * result = [Rules whoIsTheWinnerBetweenUser:[_game.userPlayer getValueOfCards] AndCom:[_game.comPlayer getValueOfCards]];
+    
+    NSLog(@"---------------------------------------------");
+    //    NSLog(@"user valueOfCard : %d",[_game.userPlayer getValueOfCards]);
+    //    NSLog(@"com valueOfCard : %d",[_game.comPlayer getValueOfCards]);
+    //    NSLog(@"result : %d", (int) result);
+    //    NSLog(@"userWin : %d", (int) userWin);
+    NSLog(@"---------------------------------------------");
+    
+    XCTAssertTrue((int)result == comWin);
+}
+
+- (void)test2NoWinner
+{
+    // user = 21
+    [_game.userPlayer addCard:[[Carte alloc] initWithColor:coeur Number:[NSNumber numberWithInt:5] Value:[NSNumber numberWithInt:9]]];
+    [_game.userPlayer addCard:[[Carte alloc] initWithColor:coeur Number:[NSNumber numberWithInt:10] Value:[NSNumber numberWithInt:9]]];
+    [_game.userPlayer addCard:[[Carte alloc] initWithColor:coeur Number:[NSNumber numberWithInt:3] Value:[NSNumber numberWithInt:3]]];
+
+    
+    
+    // com = 21
+    [_game.comPlayer addCard:[[Carte alloc] initWithColor:coeur Number:[NSNumber numberWithInt:9] Value:[NSNumber numberWithInt:9]]];
+    [_game.comPlayer addCard:[[Carte alloc] initWithColor:coeur Number:[NSNumber numberWithInt:9] Value:[NSNumber numberWithInt:9]]];
+    [_game.comPlayer addCard:[[Carte alloc] initWithColor:coeur Number:[NSNumber numberWithInt:10] Value:[NSNumber numberWithInt:3]]];
+    
+    
+    enum resultat * result = [Rules whoIsTheWinnerBetweenUser:[_game.userPlayer getValueOfCards] AndCom:[_game.comPlayer getValueOfCards]];
+    
+    NSLog(@"---------------------------------------------");
+    NSLog(@"user valueOfCard : %d",[_game.userPlayer getValueOfCards]);
+    NSLog(@"com valueOfCard : %d",[_game.comPlayer getValueOfCards]);
+//    NSLog(@"result : %d", (int) result);
+//    NSLog(@"userWin : %d", (int) userWin);
+    NSLog(@"---------------------------------------------");
+    
+    XCTAssertTrue((int)result == noWiner);
 }
 
 @end

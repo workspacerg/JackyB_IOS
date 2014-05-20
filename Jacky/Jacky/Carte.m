@@ -18,7 +18,7 @@
 
         
         _number = [NSNumber numberWithInt: arc4random_uniform(12) + 1] ;
-        _color = (enum symboleCarte) arc4random_uniform(3);
+        _color = (enum symboleCarte *) arc4random_uniform(3);
         
         switch ([_number intValue]) {
             case 1:
@@ -93,7 +93,7 @@
 {
 
     
-    return [NSString stringWithFormat:@"%@ de %d avec valeur = %@", _number, _color , _valueCard];
+    return [NSString stringWithFormat:@"%@ de %d avec valeur = %@", _number,(int) _color , _valueCard];
 
 }
 

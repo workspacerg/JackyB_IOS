@@ -71,7 +71,7 @@ enum sign{
         
         _currentMise.text = _miseTF.text;
         
-        _MoneyValue.text = [NSString stringWithFormat:@"%d",[_MoneyValue.text intValue] - [_currentMise.text intValue] ]  ;
+        _MoneyValue.text = [NSString stringWithFormat:@"%d",[_MoneyValue.text intValue] - [_currentMise.text intValue] ];
         
         [self intitialiseGame];
 
@@ -101,15 +101,13 @@ enum sign{
     if ([Rules valueIsOutOfLimit:[_scoreUser.text intValue]]) {
         
         if ([_userPlayer joker] > 0) {
-            
-            NSLog(@"I use joker");
             [_userPlayer useJoker];
             [self updateScore];
             
         }
         else{
 
-            [self looseGame];
+            //[self looseGame];
             [_getCardButton setEnabled:false];
             [_endGameButton setEnabled:false];
             [_miseButton setEnabled:true];
@@ -117,19 +115,62 @@ enum sign{
         
     }
     
+    if ([Rules valueIsOutOfLimit:[_scoreCom.text intValue]]) {
+        
+        if ([_comPlayer joker] > 0) {
+            [_comPlayer useJoker];
+            [self updateScore];
+            
+        }
+        
+    }
+    
+    
+    
     if([_scoreUser.text intValue] == 21)
     {
         [_getCardButton setEnabled:false];
-        NSLog(@"21 tout pile");
     }
     
-    [self theGameItOver];
+    if ([self theGameIsOver]) {
+        _resultGame = [Rules whoIsTheWinnerBetweenUser:[_userPlayer getValueOfCards] AndCom:[_comPlayer getValueOfCards]];
+        [self displayResult];
+    }
+    
     
 }
 
-- (void) theGameIsOver{
+- (BOOL) theGameIsOver{
 
+    if ([_userPlayer getValueOfCards] > 21 || [_comPlayer getValueOfCards] > 21 || ( [_comPlayer getValueOfCards] == [_userPlayer getValueOfCards] && ![_getCardButton isEnabled]) ||( [_comPlayer getValueOfCards] > [_userPlayer getValueOfCards] && ![_getCardButton isEnabled])) {
+        return true;
+    }
+    else
+        return false;
+}
 
+- (void )displayResult
+{
+    
+    if ((int)_resultGame == comWin) {
+        _displayWinner.text =@"Dommage";
+    }
+    else if ((int)_resultGame == userWin)
+    {
+        _displayWinner.text =@"Magic Win";
+        [self updateCurrency:[_currentMise.text intValue]*2 AndSign:ajouter];
+    }
+    else if ((int)_resultGame == noWiner)
+    {
+        NSLog(@"Bonjour");
+        _displayWinner.text = @"Match null";
+        [self updateCurrency:[_currentMise.text intValue] AndSign:ajouter];
+    }
+    
+    [_miseButton setEnabled:true];
+    [_endGameButton setEnabled:false];
+    
+    
 }
 
 - (IBAction)getNewCards:(id)sender {
@@ -144,6 +185,8 @@ enum sign{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
 - (IBAction)endGameButton:(id)sender {
     
     [_getCardButton setEnabled:false];
@@ -151,60 +194,15 @@ enum sign{
     [_comPlayer addCard:[[Carte alloc] init]];
 
     [self updateScore];
+
     
+    // SI LE SCORE EST INFERIEUR A USER ON REJOUE
     if ([_scoreCom.text intValue] < [_scoreUser.text intValue]) {
         [self endGameButton:nil];
     }
-    else{
-        
-        if ([_scoreCom.text intValue] > [_scoreUser.text intValue]) {
-            [self looseGame];
-        }
-        if ([_scoreCom.text intValue] > 21) {
-            if ([_comPlayer joker] > 0) {
-                NSLog(@"Com use joker");
-                [_comPlayer useJoker];
-                [self updateScore];
-                if ([_scoreCom.text intValue] > 21) {
-                    [self winGame];
-                }
-                else
-                {
-                    [self endGameButton:nil];
-
-                }
-            }
-            else{
-                [self winGame];
-            }
-            
-        }
-        if ([_scoreCom.text intValue] == [_scoreUser.text intValue]) {
-            [self nobodyWin];
-        }
-        
-        [_miseButton setEnabled:true];
-        [_endGameButton setEnabled:false];
-    }
 }
 
--(void) winGame
-{
-    _displayWinner.text =@"You Win";
-    [self updateCurrency:[_currentMise.text intValue]*2 AndSign:ajouter];
-    
-}
 
--(void) looseGame
-{
-    _displayWinner.text =@"You Loose";
-}
-
--(void) nobodyWin
-{
-    _displayWinner.text = @"Nobody Win";
-    [self updateCurrency:[_currentMise.text intValue] AndSign:ajouter];
-}
 
 - (void) updateCurrency: (int) current AndSign: (enum signe *) sign
 {
@@ -220,7 +218,6 @@ enum sign{
     _MoneyValue.text = [NSString stringWithFormat:@"%d", tmp];
 
 }
-
 /*
 #pragma mark - Navigation
 

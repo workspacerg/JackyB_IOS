@@ -43,10 +43,6 @@
     NSString * tested = [_carte description];
     NSString * test = @"dame de 0 avec valeur = 11";    
     
-    NSLog(@"-------------------");
-    NSLog(tested);
-    NSLog(@"-------------------");
-    
     XCTAssertFalse([test isEqualToString:tested]);
 }
 

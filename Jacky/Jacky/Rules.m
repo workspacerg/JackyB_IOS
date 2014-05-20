@@ -10,20 +10,20 @@
 
 @implementation Rules
 
-+ (enum resultat) whoIsTheWinnerBetweenUser:(int)userValue AndCom:(int)comValue{
++ (enum resultat *) whoIsTheWinnerBetweenUser:(int)userValue AndCom:(int)comValue{
 
     
     if (userValue > 21) {
-        return comWin;
+        return (enum resultat *) comWin;
     }
     else if (comValue > 21)
-        return userWin;
+        return (enum resultat *) userWin;
     
     
     if (userValue == comValue)
-        return noWiner ;
+        return (enum resultat *) noWiner ;
     else if (userValue > comValue)
-        return userWin;
+        return (enum resultat *) userWin;
     else
         return comWin;
 
