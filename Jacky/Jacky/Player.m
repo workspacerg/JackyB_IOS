@@ -20,7 +20,7 @@
         _type = userType;
         _name = name_;
         _money = [NSNumber numberWithInt:400];
-        _joker = [NSNumber numberWithInt:0];
+        _joker = 0;
         _cartes = [[NSMutableArray alloc] init];
     }
     return self;
@@ -36,7 +36,7 @@
         _type = comType;
         _name = @"Com";
         _money = [NSNumber numberWithInt:0];
-        _joker = [NSNumber numberWithInt:0];
+        _joker = 0;
         _cartes = [[NSMutableArray alloc] init];
     }
     return self;
@@ -49,6 +49,11 @@
 
 - (void) addCard: (Carte *) Card
 {
+    NSLog(@"%@ > %@",_name, [Card description]);
+    if ([[Card number] intValue] == 1) {
+        
+        _joker++;
+    }
     [_cartes addObject:Card];
 }
 
@@ -59,13 +64,25 @@
         result += [[[_cartes objectAtIndex:i] valueCard] intValue];
     }
     
+    result -= (10*_jokerUse);
+    
     return result;
 }
 
-- (void) cleanCard
+- (void) cleanGame
 {
 
     [_cartes removeAllObjects];
+    _jokerUse = 0 ;
+    _joker = 0 ;
+
+}
+
+- (void)useJoker
+{
+    
+    _jokerUse++;
+    _joker--;
 
 }
 

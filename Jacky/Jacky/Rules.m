@@ -13,6 +13,13 @@
 + (enum resultat) whoIsTheWinnerBetweenUser:(int)userValue AndCom:(int)comValue{
 
     
+    if (userValue > 21) {
+        return comWin;
+    }
+    else if (comValue > 21)
+        return userWin;
+    
+    
     if (userValue == comValue)
         return noWiner ;
     else if (userValue > comValue)

@@ -36,6 +36,7 @@
 		566D5467192A57E600ED91E0 /* testCarte.m in Sources */ = {isa = PBXBuildFile; fileRef = 566D5466192A57E600ED91E0 /* testCarte.m */; };
 		566D546E192A618500ED91E0 /* Rules.m in Sources */ = {isa = PBXBuildFile; fileRef = 566D546D192A618500ED91E0 /* Rules.m */; };
 		566D546F192A618500ED91E0 /* Rules.m in Sources */ = {isa = PBXBuildFile; fileRef = 566D546D192A618500ED91E0 /* Rules.m */; };
+		5692949A192B7971000F5057 /* GameTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 56929499192B7971000F5057 /* GameTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,7 @@
 		566D5466192A57E600ED91E0 /* testCarte.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = testCarte.m; sourceTree = "<group>"; };
 		566D546C192A618500ED91E0 /* Rules.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rules.h; sourceTree = "<group>"; };
 		566D546D192A618500ED91E0 /* Rules.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rules.m; sourceTree = "<group>"; };
+		56929499192B7971000F5057 /* GameTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +169,7 @@
 		566D5437192A3FDC00ED91E0 /* JackyTests */ = {
 			isa = PBXGroup;
 			children = (
+				56929499192B7971000F5057 /* GameTest.m */,
 				566D5466192A57E600ED91E0 /* testCarte.m */,
 				566D545C192A449600ED91E0 /* testPlayer.m */,
 				566D543D192A3FDC00ED91E0 /* JackyTests.m */,
@@ -328,6 +331,7 @@
 				566D5452192A408200ED91E0 /* UIGameVC.m in Sources */,
 				566D5465192A56CA00ED91E0 /* Carte.m in Sources */,
 				566D543E192A3FDC00ED91E0 /* JackyTests.m in Sources */,
+				5692949A192B7971000F5057 /* GameTest.m in Sources */,
 				566D5461192A4A4F00ED91E0 /* Player.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -517,6 +521,7 @@
 				566D5443192A3FDC00ED91E0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		566D5444192A3FDC00ED91E0 /* Build configuration list for PBXNativeTarget "JackyTests" */ = {
 			isa = XCConfigurationList;
@@ -525,6 +530,7 @@
 				566D5446192A3FDC00ED91E0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

@@ -18,6 +18,6 @@ enum resultat{
 
 @interface Rules : NSObject
 
-+ (enum resultat) whoIsTheWinnerBetweenUser: (int) userValue AndCom : (int) comValue;
++ (enum resultat *) whoIsTheWinnerBetweenUser: (int) userValue AndCom : (int) comValue;
 + (BOOL) valueIsOutOfLimit: (int) value;
 @end

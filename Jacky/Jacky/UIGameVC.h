@@ -14,4 +14,22 @@
 
 @interface UIGameVC : UIViewController
 
+@property (nonatomic) Player * userPlayer;
+@property (nonatomic) Player * comPlayer;
+
+
+@property (weak, nonatomic) IBOutlet UILabel *displayWinner;
+@property (weak, nonatomic) IBOutlet UIButton *getCardButton;
+@property (weak, nonatomic) IBOutlet UILabel *MoneyValue;
+@property (weak, nonatomic) IBOutlet UILabel *scoreUser;
+@property (weak, nonatomic) IBOutlet UILabel *scoreCom;
+@property (weak, nonatomic) IBOutlet UITextField *miseTF;
+@property (weak, nonatomic) IBOutlet UILabel *currentMise;
+@property (weak, nonatomic) IBOutlet UIButton *miseButton;
+@property (weak, nonatomic) IBOutlet UIButton *endGameButton;
+
+- (IBAction)Miser:(id)sender ;
+- (IBAction)endGameButton:(id)sender;
+- (void) updateScore;
+
 @end

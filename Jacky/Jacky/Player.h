@@ -22,7 +22,8 @@ enum TypePlayer {
 
 @property (nonatomic) NSString * name;
 @property (nonatomic) NSNumber * money;
-@property (nonatomic) NSNumber * joker;
+@property (nonatomic) int  joker;
+@property (nonatomic) int  jokerUse;
 @property (nonatomic) enum TypePlayer * type;
 @property (nonatomic) NSMutableArray * cartes;
 
@@ -33,7 +34,8 @@ enum TypePlayer {
 
 - (void) addCard: (Carte * ) Card;
 - (int) getValueOfCards;
-- (void) cleanCard;
+- (void) cleanGame;
+- (void) useJoker;
 
 
 @end

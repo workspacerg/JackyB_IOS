@@ -17,19 +17,6 @@ enum sign{
 
 @interface UIGameVC ()
 
-@property (nonatomic) Player * userPlayer;
-@property (nonatomic) Player * comPlayer;
-
-
-@property (weak, nonatomic) IBOutlet UILabel *displayWinner;
-@property (weak, nonatomic) IBOutlet UIButton *getCardButton;
-@property (weak, nonatomic) IBOutlet UILabel *MoneyValue;
-@property (weak, nonatomic) IBOutlet UILabel *scoreUser;
-@property (weak, nonatomic) IBOutlet UILabel *scoreCom;
-@property (weak, nonatomic) IBOutlet UITextField *miseTF;
-@property (weak, nonatomic) IBOutlet UILabel *currentMise;
-@property (weak, nonatomic) IBOutlet UIButton *miseButton;
-@property (weak, nonatomic) IBOutlet UIButton *endGameButton;
 
 @end
 
@@ -74,9 +61,8 @@ enum sign{
         _scoreUser.text = @"0";
         _scoreCom.text  = @"0";
         
-        [_userPlayer cleanCard];
-        [_comPlayer cleanCard];
-        
+        [_userPlayer cleanGame];
+        [_comPlayer cleanGame];
         
         [_getCardButton setEnabled:true];
         [_endGameButton setEnabled:true];
@@ -97,6 +83,8 @@ enum sign{
 - (void) intitialiseGame
 {
     
+    NSLog(@"----------------------------------------------------------");
+    
     [_userPlayer addCard:[[Carte alloc] init]];
     [_comPlayer addCard:[[Carte alloc] init]];
     [_userPlayer addCard:[[Carte alloc] init]];
@@ -112,12 +100,36 @@ enum sign{
     
     if ([Rules valueIsOutOfLimit:[_scoreUser.text intValue]]) {
         
-        [self looseGame];
+        if ([_userPlayer joker] > 0) {
+            
+            NSLog(@"I use joker");
+            [_userPlayer useJoker];
+            [self updateScore];
+            
+        }
+        else{
+
+            [self looseGame];
+            [_getCardButton setEnabled:false];
+            [_endGameButton setEnabled:false];
+            [_miseButton setEnabled:true];
+        }
         
-        [_getCardButton setEnabled:false];
-        [_endGameButton setEnabled:false];
-        [_miseButton setEnabled:true];
     }
+    
+    if([_scoreUser.text intValue] == 21)
+    {
+        [_getCardButton setEnabled:false];
+        NSLog(@"21 tout pile");
+    }
+    
+    [self theGameItOver];
+    
+}
+
+- (void) theGameIsOver{
+
+
 }
 
 - (IBAction)getNewCards:(id)sender {
@@ -149,7 +161,23 @@ enum sign{
             [self looseGame];
         }
         if ([_scoreCom.text intValue] > 21) {
-            [self winGame];
+            if ([_comPlayer joker] > 0) {
+                NSLog(@"Com use joker");
+                [_comPlayer useJoker];
+                [self updateScore];
+                if ([_scoreCom.text intValue] > 21) {
+                    [self winGame];
+                }
+                else
+                {
+                    [self endGameButton:nil];
+
+                }
+            }
+            else{
+                [self winGame];
+            }
+            
         }
         if ([_scoreCom.text intValue] == [_scoreUser.text intValue]) {
             [self nobodyWin];
