@@ -98,35 +98,6 @@ enum sign{
     _scoreUser.text = [[NSNumber numberWithInt:[_userPlayer getValueOfCards]] stringValue];
     _scoreCom.text  = [[NSNumber numberWithInt:[_comPlayer getValueOfCards]] stringValue];
     
-    if ([Rules valueIsOutOfLimit:[_scoreUser.text intValue]]) {
-        
-        if ([_userPlayer joker] > 0) {
-            [_userPlayer useJoker];
-            [self updateScore];
-            
-        }
-        else{
-
-            //[self looseGame];
-            [_getCardButton setEnabled:false];
-            [_endGameButton setEnabled:false];
-            [_miseButton setEnabled:true];
-        }
-        
-    }
-    
-    if ([Rules valueIsOutOfLimit:[_scoreCom.text intValue]]) {
-        
-        if ([_comPlayer joker] > 0) {
-            [_comPlayer useJoker];
-            [self updateScore];
-            
-        }
-        
-    }
-    
-    
-    
     if([_scoreUser.text intValue] == 21)
     {
         [_getCardButton setEnabled:false];
@@ -169,6 +140,7 @@ enum sign{
     
     [_miseButton setEnabled:true];
     [_endGameButton setEnabled:false];
+    [_getCardButton setEnabled:false];
     
     
 }

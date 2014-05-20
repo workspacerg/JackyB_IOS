@@ -7,6 +7,7 @@
 //
 
 #import "Player.h"
+#import "Rules.h"
 
 
 @implementation Player
@@ -59,9 +60,17 @@
 
 - (int) getValueOfCards
 {
+    
     int result = 0;    
     for (int i = 0 ; i < [_cartes count]; i++) {
         result += [[[_cartes objectAtIndex:i] valueCard] intValue];
+    }
+    
+    if ([Rules valueIsOutOfLimit:result]) {
+        
+        if (_joker > 0 ) {
+            [self useJoker];
+        }
     }
     
     result -= (10*_jokerUse);
