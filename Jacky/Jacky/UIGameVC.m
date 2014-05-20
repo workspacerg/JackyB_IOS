@@ -98,34 +98,20 @@ enum sign{
     _scoreUser.text = [[NSNumber numberWithInt:[_userPlayer getValueOfCards]] stringValue];
     _scoreCom.text  = [[NSNumber numberWithInt:[_comPlayer getValueOfCards]] stringValue];
     
-    if ([Rules valueIsOutOfLimit:[_scoreUser.text intValue]]) {
+    _userCartesLabel.text = @"" ;
+    _comCartesLabel.text = @"" ;
+    
+    for (int i = 0; i < (int) [_userPlayer.cartes count ]; i++) {
         
-        if ([_userPlayer joker] > 0) {
-            [_userPlayer useJoker];
-            [self updateScore];
-            
-        }
-        else{
-
-            //[self looseGame];
-            [_getCardButton setEnabled:false];
-            [_endGameButton setEnabled:false];
-            [_miseButton setEnabled:true];
-        }
+        _userCartesLabel.text = [NSString stringWithFormat:@"%@ %@", _userCartesLabel.text, [[_userPlayer.cartes objectAtIndex:i] number]];
         
     }
     
-    if ([Rules valueIsOutOfLimit:[_scoreCom.text intValue]]) {
+    for (int i = 0; i < (int) [_comPlayer.cartes count ]; i++) {
         
-        if ([_comPlayer joker] > 0) {
-            [_comPlayer useJoker];
-            [self updateScore];
-            
-        }
+        _comCartesLabel.text = [NSString stringWithFormat:@"%@ %@", _comCartesLabel.text, [[_comPlayer.cartes objectAtIndex:i] number]];
         
     }
-    
-    
     
     if([_scoreUser.text intValue] == 21)
     {
@@ -169,6 +155,7 @@ enum sign{
     
     [_miseButton setEnabled:true];
     [_endGameButton setEnabled:false];
+    [_getCardButton setEnabled:false];
     
     
 }
@@ -176,6 +163,7 @@ enum sign{
 - (IBAction)getNewCards:(id)sender {
     [_userPlayer addCard:[[Carte alloc] init]];
     [self updateScore];
+    
     
 }
 
