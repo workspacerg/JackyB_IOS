@@ -35,6 +35,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *comCartesLabel;
 
 @property (weak, nonatomic) IBOutlet UIView *carteView;
+@property (weak, nonatomic) IBOutlet UIView *carteViewCom;
 
 
 - (IBAction)Miser:(id)sender ;

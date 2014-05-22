@@ -79,6 +79,9 @@ enum sign{
         for(UIView *subview in [_carteView subviews]) {
             [subview removeFromSuperview];
         }
+        for(UIView *subview in [_carteViewCom subviews]) {
+            [subview removeFromSuperview];
+        }
         
         [_userPlayer cleanGame];
         [_comPlayer cleanGame];
@@ -213,7 +216,7 @@ enum sign{
     
     for (int i = 0 ; i < [_cartePlayer count]; i++) {
         
-        [[_cartePlayer objectAtIndex:i] setFrame:CGRectMake(i * 40, 100, 100, 100)];
+        [[_cartePlayer objectAtIndex:i] setFrame:CGRectMake(i * 40, 0, 100, 100)];
         [self.carteView addSubview:[_cartePlayer objectAtIndex:i]];
         
     }
@@ -221,7 +224,7 @@ enum sign{
     for (int i = 0 ; i < [_carteCom count]; i++) {
         
         [[_carteCom objectAtIndex:i] setFrame:CGRectMake(i * 40, 0, 100, 100)];
-        [self.carteView addSubview:[_carteCom objectAtIndex:i]];
+        [self.carteViewCom addSubview:[_carteCom objectAtIndex:i]];
         
     }
     
@@ -234,7 +237,7 @@ enum sign{
     [self updateCurrency:tmp AndSign:(enum sign*) enlever];
     
     tmp *= 2 ;
-    _currentMise.text = [NSString stringWithFormat:@"%d", tmp ];
+    _miseTF.text = [NSString stringWithFormat:@"%d", tmp ];
 
     
     [self getNewCards:nil];
