@@ -18,6 +18,10 @@ enum sign{
 @interface UIGameVC ()
 
 
+
+@property (nonatomic)  NSMutableArray * carteCom;
+@property (nonatomic)  NSMutableArray * cartePlayer;
+
 @end
 
 @implementation UIGameVC
@@ -34,6 +38,11 @@ enum sign{
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    _cartePlayer = [[NSMutableArray alloc] init];
+    _carteCom = [[NSMutableArray alloc] init];
+    
+    //self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"wall.jpg"]];
     
     _userPlayer = [[Player alloc] initWithName:@"Romain"];
     _comPlayer  = [[Player alloc] initCom];
@@ -59,8 +68,17 @@ enum sign{
     {
         id button = sender;
         [button setEnabled:false];
+        [_miseTF setEnabled:false];
+        
         _scoreUser.text = @"0";
         _scoreCom.text  = @"0";
+        
+        [_carteCom removeAllObjects];
+        [_cartePlayer removeAllObjects];
+        
+        for(UIView *subview in [_carteView subviews]) {
+            [subview removeFromSuperview];
+        }
         
         [_userPlayer cleanGame];
         [_comPlayer cleanGame];
@@ -69,6 +87,7 @@ enum sign{
         [_endGameButton setEnabled:true];
         [_doubleButton setEnabled:true];
         
+        _displayWinner.hidden = YES;
         _displayWinner.text = @"In game";
         
         _currentMise.text = _miseTF.text;
@@ -90,9 +109,17 @@ enum sign{
     NSLog(@"----------------------------------------------------------");
     
     [_userPlayer addCard:[[Carte alloc] init]];
+        NSString * nomCarte = [[[_userPlayer cartes] objectAtIndex:[_userPlayer.cartes count]-1] description];
+        [_cartePlayer addObject:[[UIImageView alloc] initWithImage:[UIImage imageNamed:nomCarte]]];
+        [self updCarte];
     [_comPlayer addCard:[[Carte alloc] init]];
+        nomCarte = [[[_comPlayer cartes] objectAtIndex:[_comPlayer.cartes count]-1] description];
+        [_carteCom addObject:[[UIImageView alloc] initWithImage:[UIImage imageNamed:nomCarte]]];
+        [self updCarte];
     [_userPlayer addCard:[[Carte alloc] init]];
-    
+        nomCarte = [[[_userPlayer cartes] objectAtIndex:[_userPlayer.cartes count]-1] description];
+        [_cartePlayer addObject:[[UIImageView alloc] initWithImage:[UIImage imageNamed:nomCarte]]];
+        [self updCarte];
     [self updateScore];
 
 }
@@ -144,11 +171,11 @@ enum sign{
 {
     
     if ((int)_resultGame == comWin) {
-        _displayWinner.text =@"Dommage";
+        _displayWinner.text =[NSString stringWithFormat:@"Vous perdez %d €", [_currentMise.text intValue]];
     }
     else if ((int)_resultGame == userWin)
     {
-        _displayWinner.text =@"Magic Win";
+        _displayWinner.text =@"Gagné !!!! ";
         [self updateCurrency:[_currentMise.text intValue]*2 AndSign:ajouter];
     }
     else if ((int)_resultGame == noWiner)
@@ -162,8 +189,10 @@ enum sign{
     [_endGameButton setEnabled:false];
     [_getCardButton setEnabled:false];
     [_doubleButton setEnabled:false];
+    [_miseTF setEnabled:true];
     
     NSLog(@"money = %d", [_userPlayer money]);
+        _displayWinner.hidden = NO;
     
     
 }
@@ -172,13 +201,37 @@ enum sign{
     [_userPlayer addCard:[[Carte alloc] init]];
     [self updateScore];
     
+    NSString * nomCarte = [[[_userPlayer cartes] objectAtIndex:[_userPlayer.cartes count]-1] description];
+    [_cartePlayer addObject:[[UIImageView alloc] initWithImage:[UIImage imageNamed:nomCarte]]];
+    [self updCarte];
+    
+}
+
+
+- (void) updCarte
+{
+    
+    for (int i = 0 ; i < [_cartePlayer count]; i++) {
+        
+        [[_cartePlayer objectAtIndex:i] setFrame:CGRectMake(i * 40, 100, 100, 100)];
+        [self.carteView addSubview:[_cartePlayer objectAtIndex:i]];
+        
+    }
+    
+    for (int i = 0 ; i < [_carteCom count]; i++) {
+        
+        [[_carteCom objectAtIndex:i] setFrame:CGRectMake(i * 40, 0, 100, 100)];
+        [self.carteView addSubview:[_carteCom objectAtIndex:i]];
+        
+    }
+    
     
 }
 
 - (IBAction)doubleMise:(id)sender {
     int tmp = [_currentMise.text intValue];
     
-    [self updateCurrency:tmp AndSign:(enum sign*)enlever];
+    [self updateCurrency:tmp AndSign:(enum sign*) enlever];
     
     tmp *= 2 ;
     _currentMise.text = [NSString stringWithFormat:@"%d", tmp ];
@@ -201,6 +254,9 @@ enum sign{
     [_doubleButton setEnabled:false];
     
     [_comPlayer addCard:[[Carte alloc] init]];
+    NSString * nomCarte = [[[_comPlayer cartes] objectAtIndex:[_comPlayer.cartes count]-1] description];
+    [_carteCom addObject:[[UIImageView alloc] initWithImage:[UIImage imageNamed:nomCarte]]];
+    [self updCarte];
 
     [self updateScore];
 

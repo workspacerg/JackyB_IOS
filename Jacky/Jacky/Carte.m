@@ -17,8 +17,8 @@
     if (self) {
 
         
-        _number = [NSNumber numberWithInt: arc4random_uniform(12) + 1] ;
-        _color = (enum symboleCarte *) arc4random_uniform(3);
+        _number = [NSNumber numberWithInt: arc4random_uniform(13) + 1] ;
+        _color = (enum symboleCarte *) arc4random_uniform(4);
         
         switch ([_number intValue]) {
             case 1:
@@ -92,8 +92,8 @@
 - (NSString *)description
 {
 
-    
-    return [NSString stringWithFormat:@"%@ de %d avec valeur = %@", _number,(int) _color , _valueCard];
+    return [NSString stringWithFormat:@"%@%d.png",_number,(int) _color];
+    //return [NSString stringWithFormat:@"%@ de %d avec valeur = %@", _number,(int) _color , _valueCard];
 
 }
 
