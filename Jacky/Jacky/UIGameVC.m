@@ -44,6 +44,7 @@ enum sign{
     
     _cartePlayer = [[NSMutableArray alloc] init];
     _carteCom = [[NSMutableArray alloc] init];
+    _carteSplit = [[NSMutableArray alloc] init];
     
     //self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"wall.jpg"]];
     
@@ -157,16 +158,18 @@ enum sign{
     
         NSString * nomCarte = [[[_userPlayer cartes] objectAtIndex:[_userPlayer.cartes count]-1] description];
         [_cartePlayer addObject:[[UIImageView alloc] initWithImage:[UIImage imageNamed:nomCarte]]];
-        [self updCarte];
+    [self updCarte:1];
+    
     [_comPlayer addCard:[[Carte alloc] init]];
         nomCarte = [[[_comPlayer cartes] objectAtIndex:[_comPlayer.cartes count]-1] description];
         [_carteCom addObject:[[UIImageView alloc] initWithImage:[UIImage imageNamed:nomCarte]]];
-        [self updCarte];
+    [self updCarte:0];
+    
     //[_userPlayer addCard:[[Carte alloc] init]];
-    [_userPlayer addCard:[[Carte alloc] initWithColor:coeur Number:[NSNumber numberWithInt:5] Value:[NSNumber numberWithInt:5]]];
+    [_userPlayer addCard:[[Carte alloc] initWithColor:pique Number:[NSNumber numberWithInt:5] Value:[NSNumber numberWithInt:5]]];
         nomCarte = [[[_userPlayer cartes] objectAtIndex:[_userPlayer.cartes count]-1] description];
         [_cartePlayer addObject:[[UIImageView alloc] initWithImage:[UIImage imageNamed:nomCarte]]];
-        [self updCarte];
+    [self updCarte:1];
     
     
     if ([[_userPlayer.cartes objectAtIndex:0] number]== [[_userPlayer.cartes objectAtIndex:1] number]) {
@@ -231,7 +234,7 @@ enum sign{
     
     NSString * nomCarte = [[[_userPlayer cartes] objectAtIndex:[_userPlayer.cartes count]-1] description];
     [_cartePlayer addObject:[[UIImageView alloc] initWithImage:[UIImage imageNamed:nomCarte]]];
-    [self updCarte];
+    [self updCarte:1];
     
 }
 - (IBAction)endGameButton:(id)sender {
@@ -242,7 +245,7 @@ enum sign{
     [_comPlayer addCard:[[Carte alloc] init]];
     NSString * nomCarte = [[[_comPlayer cartes] objectAtIndex:[_comPlayer.cartes count]-1] description];
     [_carteCom addObject:[[UIImageView alloc] initWithImage:[UIImage imageNamed:nomCarte]]];
-    [self updCarte];
+    [self updCarte:0];
 
     [self updateScore];
 
@@ -267,42 +270,76 @@ enum sign{
     }
     
     [self updateCurrency:tmp AndSign:(enum sign*) enlever];
-    
     tmp *= 2 ;
-    
     _miseTF.text = [NSString stringWithFormat:@"%d", tmp ];
     
+    //Split of
+    _splitMode  = YES;
+    [_splitButton setEnabled:false];
+    [_userPlayer.splitCard addObject:[_userPlayer.cartes objectAtIndex:1]];
+    [_userPlayer.cartes removeObjectAtIndex:1];
     
-   // [self getNewCards:nil];
+    NSString * nomCarte = [[[_userPlayer splitCard] objectAtIndex:[_userPlayer.splitCard count]-1] description];
+    [_carteSplit addObject:[[UIImageView alloc] initWithImage:[UIImage imageNamed:nomCarte]]];
 
+    
+    
+    NSLog(@"Count cartes %lu", (unsigned long)[_userPlayer.cartes count]);
+    NSLog(@"Count split  %lu", (unsigned long)[_userPlayer.splitCard count]);
+    
+    [self updCarte:1];
     
 }
 
 
 #pragma mark Display
-- (void) updCarte
+- (void) updCarte:(int) Joueur
 {
     
-    for (int i = 0 ; i < [_cartePlayer count]; i++) {
+    
+    
+    if (_splitMode == NO) {
         
-        [[_cartePlayer objectAtIndex:i] setFrame:CGRectMake(i * 40, 0, 80 , 80)];
-        [self.carteView addSubview:[_cartePlayer objectAtIndex:i]];
+        if (Joueur == 0) {
+            [[_carteCom objectAtIndex:[_carteCom count]-1] setFrame:CGRectMake(([_carteCom count]- 1) * 40, 0, 80 , 80)];
+            [self.carteViewCom addSubview:[_carteCom objectAtIndex:[_carteCom count]-1]];
+        }
+        else
+        {
+            [[_cartePlayer objectAtIndex:[_cartePlayer count]-1] setFrame:CGRectMake(([_cartePlayer count]- 1) * 40, 0, 80 , 80)];
+            [self.carteView addSubview:[_cartePlayer objectAtIndex:[_cartePlayer count]-1]];
+        }
+
+        
+//        for (int i = 0 ; i < [_cartePlayer count]; i++) {
+//            
+//            [[_cartePlayer objectAtIndex:i] setFrame:CGRectMake(i * 40, 0, 80 , 80)];
+//            [self.carteView addSubview:[_cartePlayer objectAtIndex:i]];
+//            
+//        }
+//        
+//        for (int i = 0 ; i < [_carteCom count]; i++) {
+//            
+//            [[_carteCom objectAtIndex:i] setFrame:CGRectMake(i * 40, 0, 80, 80)];
+//            [self.carteViewCom addSubview:[_carteCom objectAtIndex:i]];
+//            
+//        }
+        
         
     }
+    else{
     
-//    for (int i = 0 ; i < [_cartePlayer count]; i++) {
-//        
-//        [[_cartePlayer objectAtIndex:i] setFrame:CGRectMake(i * 40, 70, 70, 70)];
-//        [self.carteView addSubview:[_cartePlayer objectAtIndex:i]];
-//        
-//    }
+        NSLog(@"SplitMode ON");
+        [[_carteView.subviews objectAtIndex:1] removeFromSuperview];
+
+        
+        [[_carteSplit objectAtIndex:[_carteSplit count]-1] setFrame:CGRectMake(([_carteSplit count]- 1) * 40, 80, 80 , 80)];
+        [self.carteView addSubview:[_carteSplit objectAtIndex:[_carteSplit count]-1]];
+        
+        
     
-    for (int i = 0 ; i < [_carteCom count]; i++) {
-        
-        [[_carteCom objectAtIndex:i] setFrame:CGRectMake(i * 40, 0, 80, 80)];
-        [self.carteViewCom addSubview:[_carteCom objectAtIndex:i]];
-        
     }
+
     
 }
 

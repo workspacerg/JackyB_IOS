@@ -23,11 +23,12 @@
 @property (weak, nonatomic) IBOutlet UITextField *miseTF;
 @property (weak, nonatomic) IBOutlet UIButton *miseButton;
 
-#pragma mark Property Game Button
+#pragma mark Property Game
 @property (weak, nonatomic) IBOutlet UIButton *getCardButton;
 @property (weak, nonatomic) IBOutlet UIButton *doubleButton;
 @property (weak, nonatomic) IBOutlet UIButton *endGameButton;
 @property (weak, nonatomic) IBOutlet UIButton *splitButton;
+@property (nonatomic) BOOL splitMode;
 
 #pragma mark Property Affichage
 @property (nonatomic) enum resultat * resultGame;
@@ -37,6 +38,7 @@
 @property (weak, nonatomic) IBOutlet UIView *carteView;
 @property (weak, nonatomic) IBOutlet UIView *carteViewCom;
 @property (nonatomic)  NSMutableArray * carteCom;
+@property (nonatomic)  NSMutableArray * carteSplit;
 @property (nonatomic)  NSMutableArray * cartePlayer;
 
 #pragma mark Property DEBUG

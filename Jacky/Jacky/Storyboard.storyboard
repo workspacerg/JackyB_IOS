@@ -86,14 +86,14 @@
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wuj-ha-eAX">
-                                <rect key="frame" x="4" y="300" width="316" height="32"/>
+                                <rect key="frame" x="4" y="283" width="316" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" name="highlightColor" catalog="System" colorSpace="catalog"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bBR-73-amZ">
-                                <rect key="frame" x="0.0" y="172" width="320" height="32"/>
+                                <rect key="frame" x="0.0" y="155" width="320" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" name="highlightColor" catalog="System" colorSpace="catalog"/>
@@ -163,7 +163,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="0jf-iU-Bzs">
-                                <rect key="frame" x="20" y="302" width="85" height="30"/>
+                                <rect key="frame" x="20" y="285" width="85" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" name="highlightColor" catalog="System" colorSpace="catalog"/>
@@ -175,12 +175,12 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" id="8BT-fE-Yyw">
-                                <rect key="frame" x="0.0" y="340" width="320" height="90"/>
+                                <rect key="frame" x="0.0" y="323" width="320" height="134"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.22352942819999999" green="0.2588235438" blue="0.38823533059999998" alpha="1" colorSpace="deviceRGB"/>
                             </view>
                             <view contentMode="scaleToFill" id="Qb5-K6-FYA">
-                                <rect key="frame" x="0.0" y="207" width="320" height="90"/>
+                                <rect key="frame" x="0.0" y="190" width="320" height="90"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.22352942819999999" green="0.2588235438" blue="0.38823533059999998" alpha="1" colorSpace="deviceRGB"/>
                             </view>

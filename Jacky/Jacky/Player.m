@@ -27,6 +27,7 @@
         _money = 400;
         _joker = 0;
         _cartes = [[NSMutableArray alloc] init];
+        _splitCard = [[NSMutableArray alloc] init];
     }
     return self;
 }
