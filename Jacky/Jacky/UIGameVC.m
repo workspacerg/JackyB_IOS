@@ -255,7 +255,26 @@ enum sign{
 
 - (IBAction)split:(id)sender {
     
+    // Money
+    int tmp = [_miseTF.text intValue];
+    if (tmp > [_MoneyValue.text intValue]) {
+        
+        _displayWinner.text = @"Fond insufisant";
+        _displayWinner.hidden = NO;
+        _splitButton.hidden = YES;
+        
+        return ;
+    }
     
+    [self updateCurrency:tmp AndSign:(enum sign*) enlever];
+    
+    tmp *= 2 ;
+    
+    _miseTF.text = [NSString stringWithFormat:@"%d", tmp ];
+    
+    
+   // [self getNewCards:nil];
+
     
 }
 
