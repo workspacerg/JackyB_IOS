@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="PkH-YL-D7j">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="qdZ-ZT-gaV">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="PkH-YL-D7j" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="VtO-Yx-GTl">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="WOk-6q-o47" kind="relationship" relationship="rootViewController" id="Ako-0t-Sup"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Adn-Rp-q9a" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="43" y="53"/>
+        </scene>
+        <!--Fisrt ResponderVC - InterfaceTest-->
+        <scene sceneID="RLN-fv-1JR">
+            <objects>
+                <viewController id="WOk-6q-o47" customClass="FisrtResponderVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="c2m-Gz-gtc"/>
+                        <viewControllerLayoutGuide type="bottom" id="bEU-PQ-MG7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="k2e-Un-dtr">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="44G-kt-csn">
+                                <rect key="frame" x="61" y="511" width="199" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.87450980389999999" green="0.12656066335782709" blue="0.13267715912672395" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" name="highlightColor" catalog="System" colorSpace="catalog"/>
+                                <state key="normal" title="AddCarte">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="getCarte:" destination="WOk-6q-o47" eventType="touchUpInside" id="edN-KP-ZM7"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="InterfaceTest" id="ZMx-gK-A2Z"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7ok-QE-FWT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="512" y="50"/>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

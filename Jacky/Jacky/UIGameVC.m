@@ -22,6 +22,7 @@ enum sign{
 
 @implementation UIGameVC
 
+#pragma mark Lauch View
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -31,9 +32,20 @@ enum sign{
     return self;
 }
 
+- (void) didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    _cartePlayer = [[NSMutableArray alloc] init];
+    _carteCom = [[NSMutableArray alloc] init];
+    
+    //self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"wall.jpg"]];
     
     _userPlayer = [[Player alloc] initWithName:@"Romain"];
     _comPlayer  = [[Player alloc] initCom];
@@ -46,6 +58,8 @@ enum sign{
    
     
 }
+
+#pragma mark Money
 - (IBAction)Miser:(id)sender {
 
     
@@ -59,8 +73,20 @@ enum sign{
     {
         id button = sender;
         [button setEnabled:false];
+        [_miseTF setEnabled:false];
+        
         _scoreUser.text = @"0";
         _scoreCom.text  = @"0";
+        
+        [_carteCom removeAllObjects];
+        [_cartePlayer removeAllObjects];
+        
+        for(UIView *subview in [_carteView subviews]) {
+            [subview removeFromSuperview];
+        }
+        for(UIView *subview in [_carteViewCom subviews]) {
+            [subview removeFromSuperview];
+        }
         
         [_userPlayer cleanGame];
         [_comPlayer cleanGame];
@@ -69,20 +95,55 @@ enum sign{
         [_endGameButton setEnabled:true];
         [_doubleButton setEnabled:true];
         
-        _displayWinner.text = @"In game";
+        _displayWinner.hidden = YES;
         
-        _currentMise.text = _miseTF.text;
         
-       // _MoneyValue.text = [NSString stringWithFormat:@"%d",[_MoneyValue.text intValue] - [_currentMise.text intValue] ];
-        
-        [self updateCurrency:[_currentMise.text intValue] AndSign:enlever];
+        [self updateCurrency:[_miseTF.text intValue] AndSign:enlever];
         
         [self intitialiseGame];
 
         
     }
     
+}
+
+- (void) updateCurrency: (int) current AndSign:(enum signe *) sign
+{
+    int tmp = [_MoneyValue.text intValue];
+    
+    if (sign == ajouter) {
+       
+        tmp += current ;
     }
+    else{
+        tmp -= current ;
+    }
+    _MoneyValue.text = [NSString stringWithFormat:@"%d", tmp];
+    NSLog(@"upd current");
+    _userPlayer.money = tmp;
+
+}
+
+- (IBAction)doubleMise:(id)sender {
+    int tmp = [_miseTF.text intValue];
+    
+    if (tmp > [_MoneyValue.text intValue]) {
+        
+        _displayWinner.text = @"Fond insufisant";
+        _displayWinner.hidden = NO;
+        
+        return ;
+    }
+    
+    [self updateCurrency:tmp AndSign:(enum sign*) enlever];
+    
+    tmp *= 2 ;
+    _miseTF.text = [NSString stringWithFormat:@"%d", tmp ];
+    
+    
+    [self getNewCards:nil];
+    
+}
 
 - (void) intitialiseGame
 {
@@ -90,13 +151,22 @@ enum sign{
     NSLog(@"----------------------------------------------------------");
     
     [_userPlayer addCard:[[Carte alloc] init]];
+        NSString * nomCarte = [[[_userPlayer cartes] objectAtIndex:[_userPlayer.cartes count]-1] description];
+        [_cartePlayer addObject:[[UIImageView alloc] initWithImage:[UIImage imageNamed:nomCarte]]];
+        [self updCarte];
     [_comPlayer addCard:[[Carte alloc] init]];
+        nomCarte = [[[_comPlayer cartes] objectAtIndex:[_comPlayer.cartes count]-1] description];
+        [_carteCom addObject:[[UIImageView alloc] initWithImage:[UIImage imageNamed:nomCarte]]];
+        [self updCarte];
     [_userPlayer addCard:[[Carte alloc] init]];
-    
+        nomCarte = [[[_userPlayer cartes] objectAtIndex:[_userPlayer.cartes count]-1] description];
+        [_cartePlayer addObject:[[UIImageView alloc] initWithImage:[UIImage imageNamed:nomCarte]]];
+        [self updCarte];
     [self updateScore];
 
 }
 
+#pragma mark Game
 - (void) updateScore
 {
     _scoreUser.text = [[NSNumber numberWithInt:[_userPlayer getValueOfCards]] stringValue];
@@ -140,67 +210,26 @@ enum sign{
         return false;
 }
 
-- (void )displayResult
-{
-    
-    if ((int)_resultGame == comWin) {
-        _displayWinner.text =@"Dommage";
-    }
-    else if ((int)_resultGame == userWin)
-    {
-        _displayWinner.text =@"Magic Win";
-        [self updateCurrency:[_currentMise.text intValue]*2 AndSign:ajouter];
-    }
-    else if ((int)_resultGame == noWiner)
-    {
-        NSLog(@"Bonjour");
-        _displayWinner.text = @"Match null";
-        [self updateCurrency:[_currentMise.text intValue] AndSign:ajouter];
-    }
-    
-    [_miseButton setEnabled:true];
-    [_endGameButton setEnabled:false];
-    [_getCardButton setEnabled:false];
-    [_doubleButton setEnabled:false];
-    
-    NSLog(@"money = %d", [_userPlayer money]);
-    
-    
-}
+
 
 - (IBAction)getNewCards:(id)sender {
     [_userPlayer addCard:[[Carte alloc] init]];
     [self updateScore];
     
+    NSString * nomCarte = [[[_userPlayer cartes] objectAtIndex:[_userPlayer.cartes count]-1] description];
+    [_cartePlayer addObject:[[UIImageView alloc] initWithImage:[UIImage imageNamed:nomCarte]]];
+    [self updCarte];
     
 }
-
-- (IBAction)doubleMise:(id)sender {
-    int tmp = [_currentMise.text intValue];
-    
-    [self updateCurrency:tmp AndSign:(enum sign*)enlever];
-    
-    tmp *= 2 ;
-    _currentMise.text = [NSString stringWithFormat:@"%d", tmp ];
-
-    
-    [self getNewCards:nil];
-    
-}
-
-- (void) didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-
 - (IBAction)endGameButton:(id)sender {
     
     [_getCardButton setEnabled:false];
     [_doubleButton setEnabled:false];
     
     [_comPlayer addCard:[[Carte alloc] init]];
+    NSString * nomCarte = [[[_comPlayer cartes] objectAtIndex:[_comPlayer.cartes count]-1] description];
+    [_carteCom addObject:[[UIImageView alloc] initWithImage:[UIImage imageNamed:nomCarte]]];
+    [self updCarte];
 
     [self updateScore];
 
@@ -212,23 +241,65 @@ enum sign{
 }
 
 
-
-- (void) updateCurrency: (int) current AndSign: (enum signe *) sign
+#pragma mark Display
+- (void) updCarte
 {
-    int tmp = [_MoneyValue.text intValue];
     
-    if (sign == ajouter) {
-       
-        tmp += current ;
+    for (int i = 0 ; i < [_cartePlayer count]; i++) {
+        
+        [[_cartePlayer objectAtIndex:i] setFrame:CGRectMake(i * 40, 0, 80 , 80)];
+        [self.carteView addSubview:[_cartePlayer objectAtIndex:i]];
+        
     }
-    else{
-        tmp -= current ;
+    
+//    for (int i = 0 ; i < [_cartePlayer count]; i++) {
+//        
+//        [[_cartePlayer objectAtIndex:i] setFrame:CGRectMake(i * 40, 70, 70, 70)];
+//        [self.carteView addSubview:[_cartePlayer objectAtIndex:i]];
+//        
+//    }
+    
+    for (int i = 0 ; i < [_carteCom count]; i++) {
+        
+        [[_carteCom objectAtIndex:i] setFrame:CGRectMake(i * 40, 0, 80, 80)];
+        [self.carteViewCom addSubview:[_carteCom objectAtIndex:i]];
+        
     }
-    _MoneyValue.text = [NSString stringWithFormat:@"%d", tmp];
-    NSLog(@"upd current");
-    _userPlayer.money = tmp;
-
+    
 }
+
+- (void )displayResult
+{
+    
+    if ((int)_resultGame == comWin) {
+        _displayWinner.text =[NSString stringWithFormat:@"Vous perdez %d €", [_miseTF.text intValue]];
+    }
+    else if ((int)_resultGame == userWin)
+    {
+        _displayWinner.text =@"Gagné !!!! ";
+        [self updateCurrency:[_miseTF.text intValue]*2 AndSign:ajouter];
+    }
+    else if ((int)_resultGame == noWiner)
+    {
+        NSLog(@"Bonjour");
+        _displayWinner.text = @"Match null";
+        [self updateCurrency:[_miseTF.text intValue] AndSign:ajouter];
+    }
+    
+    [_miseButton setEnabled:true];
+    [_endGameButton setEnabled:false];
+    [_getCardButton setEnabled:false];
+    [_doubleButton setEnabled:false];
+    [_miseTF setEnabled:true];
+    
+    NSLog(@"money = %d", [_userPlayer money]);
+        _displayWinner.hidden = NO;
+    
+    _miseTF.text = @"20";
+}
+
+
+
 /*
 #pragma mark - Navigation
 
