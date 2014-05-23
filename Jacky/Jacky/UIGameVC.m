@@ -55,6 +55,7 @@ enum sign{
     [_getCardButton setEnabled:false];
     [_endGameButton setEnabled:false];
     [_doubleButton setEnabled:false];
+    
     _splitButton.hidden = YES;
     _miseTF.text = @"20";
    
@@ -82,6 +83,7 @@ enum sign{
         
         [_carteCom removeAllObjects];
         [_cartePlayer removeAllObjects];
+        [_carteSplit removeAllObjects];
         
         for(UIView *subview in [_carteView subviews]) {
             [subview removeFromSuperview];
@@ -98,6 +100,9 @@ enum sign{
         [_doubleButton setEnabled:true];
         
         _displayWinner.hidden = YES;
+        _splitButton.hidden = YES;
+        
+        _splitMode = NO;
         
         
         [self updateCurrency:[_miseTF.text intValue] AndSign:enlever];
@@ -174,6 +179,7 @@ enum sign{
     
     if ([[_userPlayer.cartes objectAtIndex:0] number]== [[_userPlayer.cartes objectAtIndex:1] number]) {
         _splitButton.hidden = NO;
+        [_splitButton setEnabled:true];
     }
     
     
@@ -226,17 +232,40 @@ enum sign{
 }
 
 - (BOOL) theGameIsOver{
-
-    if ([_userPlayer getValueOfCards] > 21 || [_comPlayer getValueOfCards] > 21 || ( [_comPlayer getValueOfCards] == [_userPlayer getValueOfCards] && ![_getCardButton isEnabled]) ||( [_comPlayer getValueOfCards] > [_userPlayer getValueOfCards] && ![_getCardButton isEnabled])) {
+    
+    NSLog(@"Com value%d",[_comPlayer getValueOfCards]);
+    
+    
+    // On arrete le jeu si,
+        // com >= 17
+        // user > 21
+        // user = com et l'utilisateur ne peut pas reprendre des cartes.
+        // com > user et l'utilisateur ne peut pas reprendre des cartes.
+    
+    
+    if ( [_comPlayer getValueOfCards] >= 17) {
         return true;
     }
-    else
-        return false;
+    
+    if ( [_userPlayer getValueOfCards] > 21){
+        return true;
+    }
+    
+    if ( [_comPlayer getValueOfCards] == [_userPlayer getValueOfCards] && ![_getCardButton isEnabled] ){
+        return true;
+    }
+    
+    if ( [_comPlayer getValueOfCards] > [_userPlayer getValueOfCards] && ![_getCardButton isEnabled] ){
+        return true;
+    }
+    
+    return false;
 }
 
 
 
 - (IBAction)getNewCards:(id)sender {
+    
     [_userPlayer addCard:[[Carte alloc] init]];
     [self updateScore];
     
@@ -252,6 +281,10 @@ enum sign{
         [_carteSplit addObject:[[UIImageView alloc] initWithImage:[UIImage imageNamed:nomCarte]]];
         [self updCarte:2];
         
+    }
+    else
+    {
+        _splitButton.hidden = YES;
     }
     
 }
@@ -269,7 +302,7 @@ enum sign{
 
     
     // SI LE SCORE EST INFERIEUR A USER ON REJOUE
-    if ([_scoreCom.text intValue] < [_scoreUser.text intValue]) {
+    if (![self theGameIsOver]) {
         [self endGameButton:nil];
     }
 }
@@ -302,14 +335,14 @@ enum sign{
     NSString * nomCarte = [[[_splitPLayer cartes] objectAtIndex:[_splitPLayer.cartes count]-1] description];
     [_carteSplit addObject:[[UIImageView alloc] initWithImage:[UIImage imageNamed:nomCarte]]];
     
-    NSLog(@"SplitMode ON");
+    //NSLog(@"SplitMode ON");
     [[_carteView.subviews objectAtIndex:1] removeFromSuperview];
     
     [[_carteSplit objectAtIndex:[_carteSplit count]-1] setFrame:CGRectMake(([_carteSplit count]- 1) * 40, 80, 80 , 80)];
     [self.carteView addSubview:[_carteSplit objectAtIndex:[_carteSplit count]-1]];
     
-    NSLog(@"Count cartes %lu", (unsigned long)[_splitPLayer.cartes count]);
-    NSLog(@"Count split  %lu", (unsigned long)[_userPlayer.cartes count]);
+    //NSLog(@"Count cartes %lu", (unsigned long)[_splitPLayer.cartes count]);
+    //NSLog(@"Count split  %lu", (unsigned long)[_userPlayer.cartes count]);
     
     
     
@@ -370,7 +403,7 @@ enum sign{
     }
     else if ((int)_resultGame == noWiner)
     {
-        NSLog(@"Bonjour");
+    
         _displayWinner.text = @"Match null";
         [self updateCurrency:[_miseTF.text intValue] AndSign:ajouter];
     }
@@ -381,7 +414,7 @@ enum sign{
     [_doubleButton setEnabled:false];
     [_miseTF setEnabled:true];
     
-    NSLog(@"money = %d", [_userPlayer money]);
+    //NSLog(@"money = %d", [_userPlayer money]);
         _displayWinner.hidden = NO;
     
     _miseTF.text = @"20";
