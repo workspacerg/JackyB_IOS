@@ -54,6 +54,7 @@ enum sign{
     [_getCardButton setEnabled:false];
     [_endGameButton setEnabled:false];
     [_doubleButton setEnabled:false];
+    _splitButton.hidden = YES;
     _miseTF.text = @"20";
    
     
@@ -150,7 +151,10 @@ enum sign{
     
     NSLog(@"----------------------------------------------------------");
     
-    [_userPlayer addCard:[[Carte alloc] init]];
+    
+    //[_userPlayer addCard:[[Carte alloc] init]];
+    [_userPlayer addCard:[[Carte alloc] initWithColor:coeur Number:[NSNumber numberWithInt:5] Value:[NSNumber numberWithInt:5]]];
+    
         NSString * nomCarte = [[[_userPlayer cartes] objectAtIndex:[_userPlayer.cartes count]-1] description];
         [_cartePlayer addObject:[[UIImageView alloc] initWithImage:[UIImage imageNamed:nomCarte]]];
         [self updCarte];
@@ -158,10 +162,19 @@ enum sign{
         nomCarte = [[[_comPlayer cartes] objectAtIndex:[_comPlayer.cartes count]-1] description];
         [_carteCom addObject:[[UIImageView alloc] initWithImage:[UIImage imageNamed:nomCarte]]];
         [self updCarte];
-    [_userPlayer addCard:[[Carte alloc] init]];
+    //[_userPlayer addCard:[[Carte alloc] init]];
+    [_userPlayer addCard:[[Carte alloc] initWithColor:coeur Number:[NSNumber numberWithInt:5] Value:[NSNumber numberWithInt:5]]];
         nomCarte = [[[_userPlayer cartes] objectAtIndex:[_userPlayer.cartes count]-1] description];
         [_cartePlayer addObject:[[UIImageView alloc] initWithImage:[UIImage imageNamed:nomCarte]]];
         [self updCarte];
+    
+    
+    if ([[_userPlayer.cartes objectAtIndex:0] number]== [[_userPlayer.cartes objectAtIndex:1] number]) {
+        _splitButton.hidden = NO;
+    }
+    
+    
+    
     [self updateScore];
 
 }
@@ -238,6 +251,12 @@ enum sign{
     if ([_scoreCom.text intValue] < [_scoreUser.text intValue]) {
         [self endGameButton:nil];
     }
+}
+
+- (IBAction)split:(id)sender {
+    
+    
+    
 }
 
 

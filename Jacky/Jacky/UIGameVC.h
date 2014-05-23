@@ -27,6 +27,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *getCardButton;
 @property (weak, nonatomic) IBOutlet UIButton *doubleButton;
 @property (weak, nonatomic) IBOutlet UIButton *endGameButton;
+@property (weak, nonatomic) IBOutlet UIButton *splitButton;
 
 #pragma mark Property Affichage
 @property (nonatomic) enum resultat * resultGame;
