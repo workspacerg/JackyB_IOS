@@ -187,6 +187,8 @@ enum sign{
 {
     _scoreUser.text = [[NSNumber numberWithInt:[_userPlayer getValueOfCards]] stringValue];
     _scoreCom.text  = [[NSNumber numberWithInt:[_comPlayer getValueOfCards]] stringValue];
+    _scoreSplit.text = [[NSNumber numberWithInt:[_splitPLayer getValueOfCards]] stringValue];
+    
     
     _userCartesLabel.text = @"" ;
     _comCartesLabel.text = @"" ;
@@ -202,6 +204,12 @@ enum sign{
         _comCartesLabel.text = [NSString stringWithFormat:@"%@ %@", _comCartesLabel.text, [[_comPlayer.cartes objectAtIndex:i] number]];
         
     }
+    
+    if (_splitMode == YES) {
+        _scoreSplit.text = [[NSNumber numberWithInt:[_splitPLayer getValueOfCards]] stringValue];
+    }
+    
+    
     
     if([_scoreUser.text intValue] == 21)
     {
@@ -236,6 +244,16 @@ enum sign{
     [_cartePlayer addObject:[[UIImageView alloc] initWithImage:[UIImage imageNamed:nomCarte]]];
     [self updCarte:1];
     
+    if (_splitMode == YES) {
+        [_splitPLayer addCard:[[Carte alloc] init]];
+        [self updateScore];
+       
+        nomCarte = [[[_splitPLayer cartes] objectAtIndex:[_splitPLayer.cartes count]-1] description];
+        [_carteSplit addObject:[[UIImageView alloc] initWithImage:[UIImage imageNamed:nomCarte]]];
+        [self updCarte:2];
+        
+    }
+    
 }
 - (IBAction)endGameButton:(id)sender {
     
@@ -258,6 +276,8 @@ enum sign{
 
 - (IBAction)split:(id)sender {
     
+    _splitPLayer = [[Player alloc] initWithName:@"Split"];
+    
     // Money
     int tmp = [_miseTF.text intValue];
     if (tmp > [_MoneyValue.text intValue]) {
@@ -276,18 +296,24 @@ enum sign{
     //Split of
     _splitMode  = YES;
     [_splitButton setEnabled:false];
-    [_userPlayer.splitCard addObject:[_userPlayer.cartes objectAtIndex:1]];
+    [_splitPLayer.cartes addObject:[_userPlayer.cartes objectAtIndex:1]];
     [_userPlayer.cartes removeObjectAtIndex:1];
     
-    NSString * nomCarte = [[[_userPlayer splitCard] objectAtIndex:[_userPlayer.splitCard count]-1] description];
+    NSString * nomCarte = [[[_splitPLayer cartes] objectAtIndex:[_splitPLayer.cartes count]-1] description];
     [_carteSplit addObject:[[UIImageView alloc] initWithImage:[UIImage imageNamed:nomCarte]]];
-
+    
+    NSLog(@"SplitMode ON");
+    [[_carteView.subviews objectAtIndex:1] removeFromSuperview];
+    
+    [[_carteSplit objectAtIndex:[_carteSplit count]-1] setFrame:CGRectMake(([_carteSplit count]- 1) * 40, 80, 80 , 80)];
+    [self.carteView addSubview:[_carteSplit objectAtIndex:[_carteSplit count]-1]];
+    
+    NSLog(@"Count cartes %lu", (unsigned long)[_splitPLayer.cartes count]);
+    NSLog(@"Count split  %lu", (unsigned long)[_userPlayer.cartes count]);
     
     
-    NSLog(@"Count cartes %lu", (unsigned long)[_userPlayer.cartes count]);
-    NSLog(@"Count split  %lu", (unsigned long)[_userPlayer.splitCard count]);
     
-    [self updCarte:1];
+    [self updateScore];
     
 }
 
@@ -296,10 +322,8 @@ enum sign{
 - (void) updCarte:(int) Joueur
 {
     
-    
-    
     if (_splitMode == NO) {
-        
+        //ComPlayer
         if (Joueur == 0) {
             [[_carteCom objectAtIndex:[_carteCom count]-1] setFrame:CGRectMake(([_carteCom count]- 1) * 40, 0, 80 , 80)];
             [self.carteViewCom addSubview:[_carteCom objectAtIndex:[_carteCom count]-1]];
@@ -309,37 +333,27 @@ enum sign{
             [[_cartePlayer objectAtIndex:[_cartePlayer count]-1] setFrame:CGRectMake(([_cartePlayer count]- 1) * 40, 0, 80 , 80)];
             [self.carteView addSubview:[_cartePlayer objectAtIndex:[_cartePlayer count]-1]];
         }
-
-        
-//        for (int i = 0 ; i < [_cartePlayer count]; i++) {
-//            
-//            [[_cartePlayer objectAtIndex:i] setFrame:CGRectMake(i * 40, 0, 80 , 80)];
-//            [self.carteView addSubview:[_cartePlayer objectAtIndex:i]];
-//            
-//        }
-//        
-//        for (int i = 0 ; i < [_carteCom count]; i++) {
-//            
-//            [[_carteCom objectAtIndex:i] setFrame:CGRectMake(i * 40, 0, 80, 80)];
-//            [self.carteViewCom addSubview:[_carteCom objectAtIndex:i]];
-//            
-//        }
-        
-        
     }
     else{
     
-        NSLog(@"SplitMode ON");
-        [[_carteView.subviews objectAtIndex:1] removeFromSuperview];
-
+        if (Joueur == 0) {
+            [[_carteCom objectAtIndex:[_carteCom count]-1] setFrame:CGRectMake(([_carteCom count]- 1) * 40 , 0, 80 , 80)];
+            [self.carteViewCom addSubview:[_carteCom objectAtIndex:[_carteCom count]-1]];
+        }
+        else if (Joueur == 1)
+        {
+            [[_cartePlayer objectAtIndex:[_cartePlayer count]-1] setFrame:CGRectMake(([_cartePlayer count]- 1) * 40 - 40, 0, 80 , 80)];
+            [self.carteView addSubview:[_cartePlayer objectAtIndex:[_cartePlayer count]-1]];
+        }
+        else
+        {
+            [[_carteSplit objectAtIndex:[_carteSplit count]-1] setFrame:CGRectMake(([_carteSplit count]- 1) * 40, 80, 80 , 80)];
+            [self.carteView addSubview:[_carteSplit objectAtIndex:[_carteSplit count]-1]];
         
-        [[_carteSplit objectAtIndex:[_carteSplit count]-1] setFrame:CGRectMake(([_carteSplit count]- 1) * 40, 80, 80 , 80)];
-        [self.carteView addSubview:[_carteSplit objectAtIndex:[_carteSplit count]-1]];
-        
+        }
         
     
     }
-
     
 }
 

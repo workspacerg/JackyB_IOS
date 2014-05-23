@@ -184,6 +184,13 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.22352942819999999" green="0.2588235438" blue="0.38823533059999998" alpha="1" colorSpace="deviceRGB"/>
                             </view>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cm2-JT-edd">
+                                <rect key="frame" x="217" y="289" width="64" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" name="highlightColor" catalog="System" colorSpace="catalog"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.22352942824363708" green="0.25882354378700256" blue="0.38823533058166504" alpha="1" colorSpace="deviceRGB"/>
                     </view>
@@ -202,6 +209,7 @@
                         <outlet property="miseButton" destination="o3h-09-NUE" id="QW5-bB-TM5"/>
                         <outlet property="miseTF" destination="Xet-Lu-BP0" id="cGX-1b-5Ht"/>
                         <outlet property="scoreCom" destination="bBR-73-amZ" id="M4N-1p-KM2"/>
+                        <outlet property="scoreSplit" destination="cm2-JT-edd" id="H8F-cC-wYk"/>
                         <outlet property="scoreUser" destination="wuj-ha-eAX" id="O7j-nr-Z7O"/>
                         <outlet property="splitButton" destination="0jf-iU-Bzs" id="SXh-mV-bVS"/>
                         <outlet property="userCartesLabel" destination="QCq-br-AAt" id="eOk-N6-g16"/>

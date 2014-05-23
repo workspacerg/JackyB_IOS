@@ -17,6 +17,7 @@
 #pragma mark Property Player
 @property (nonatomic) Player * userPlayer;
 @property (nonatomic) Player * comPlayer;
+@property (nonatomic) Player * splitPLayer;
 
 #pragma mark Property Money
 @property (weak, nonatomic) IBOutlet UILabel *MoneyValue;
@@ -34,12 +35,14 @@
 @property (nonatomic) enum resultat * resultGame;
 @property (weak, nonatomic) IBOutlet UILabel *displayWinner;
 @property (weak, nonatomic) IBOutlet UILabel *scoreUser;
+@property (weak, nonatomic) IBOutlet UILabel *scoreSplit;
 @property (weak, nonatomic) IBOutlet UILabel *scoreCom;
 @property (weak, nonatomic) IBOutlet UIView *carteView;
 @property (weak, nonatomic) IBOutlet UIView *carteViewCom;
 @property (nonatomic)  NSMutableArray * carteCom;
 @property (nonatomic)  NSMutableArray * carteSplit;
 @property (nonatomic)  NSMutableArray * cartePlayer;
+
 
 #pragma mark Property DEBUG
 @property (weak, nonatomic) IBOutlet UILabel *userCartesLabel;

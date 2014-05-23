@@ -26,8 +26,6 @@ enum TypePlayer {
 @property (nonatomic) int  jokerUse;
 @property (nonatomic) enum TypePlayer * type;
 @property (nonatomic) NSMutableArray * cartes;
-@property (nonatomic) NSMutableArray * splitCard;
-
 
 - (id)initWithName: (NSString *) name_;
 - (id)initCom;
