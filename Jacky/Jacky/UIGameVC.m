@@ -57,6 +57,7 @@ enum sign{
     [_doubleButton setEnabled:false];
     
     _splitButton.hidden = YES;
+    _scoreSplit.hidden = YES;
     _miseTF.text = @"20";
    
     
@@ -126,13 +127,14 @@ enum sign{
         tmp -= current ;
     }
     _MoneyValue.text = [NSString stringWithFormat:@"%d", tmp];
-    NSLog(@"upd current");
     _userPlayer.money = tmp;
 
 }
 
 - (IBAction)doubleMise:(id)sender {
     int tmp = [_miseTF.text intValue];
+    
+    [_doubleButton setEnabled:FALSE];
     
     if (tmp > [_MoneyValue.text intValue]) {
         
@@ -155,12 +157,10 @@ enum sign{
 - (void) intitialiseGame
 {
     
-    NSLog(@"----------------------------------------------------------");
     
     
-    //[_userPlayer addCard:[[Carte alloc] init]];
-    [_userPlayer addCard:[[Carte alloc] initWithColor:coeur Number:[NSNumber numberWithInt:5] Value:[NSNumber numberWithInt:5]]];
     
+    [_userPlayer addCard:[[Carte alloc] init]];
         NSString * nomCarte = [[[_userPlayer cartes] objectAtIndex:[_userPlayer.cartes count]-1] description];
         [_cartePlayer addObject:[[UIImageView alloc] initWithImage:[UIImage imageNamed:nomCarte]]];
     [self updCarte:1];
@@ -170,8 +170,7 @@ enum sign{
         [_carteCom addObject:[[UIImageView alloc] initWithImage:[UIImage imageNamed:nomCarte]]];
     [self updCarte:0];
     
-    //[_userPlayer addCard:[[Carte alloc] init]];
-    [_userPlayer addCard:[[Carte alloc] initWithColor:pique Number:[NSNumber numberWithInt:5] Value:[NSNumber numberWithInt:5]]];
+    [_userPlayer addCard:[[Carte alloc] init]];
         nomCarte = [[[_userPlayer cartes] objectAtIndex:[_userPlayer.cartes count]-1] description];
         [_cartePlayer addObject:[[UIImageView alloc] initWithImage:[UIImage imageNamed:nomCarte]]];
     [self updCarte:1];
@@ -233,7 +232,6 @@ enum sign{
 
 - (BOOL) theGameIsOver{
     
-    NSLog(@"Com value%d",[_comPlayer getValueOfCards]);
     
     
     // On arrete le jeu si,
@@ -309,6 +307,8 @@ enum sign{
 
 - (IBAction)split:(id)sender {
     
+    _scoreSplit.hidden = YES;
+    
     _splitPLayer = [[Player alloc] initWithName:@"Split"];
     
     // Money
@@ -335,15 +335,11 @@ enum sign{
     NSString * nomCarte = [[[_splitPLayer cartes] objectAtIndex:[_splitPLayer.cartes count]-1] description];
     [_carteSplit addObject:[[UIImageView alloc] initWithImage:[UIImage imageNamed:nomCarte]]];
     
-    //NSLog(@"SplitMode ON");
+
     [[_carteView.subviews objectAtIndex:1] removeFromSuperview];
     
     [[_carteSplit objectAtIndex:[_carteSplit count]-1] setFrame:CGRectMake(([_carteSplit count]- 1) * 40, 80, 80 , 80)];
     [self.carteView addSubview:[_carteSplit objectAtIndex:[_carteSplit count]-1]];
-    
-    //NSLog(@"Count cartes %lu", (unsigned long)[_splitPLayer.cartes count]);
-    //NSLog(@"Count split  %lu", (unsigned long)[_userPlayer.cartes count]);
-    
     
     
     [self updateScore];
@@ -414,7 +410,7 @@ enum sign{
     [_doubleButton setEnabled:false];
     [_miseTF setEnabled:true];
     
-    //NSLog(@"money = %d", [_userPlayer money]);
+
         _displayWinner.hidden = NO;
     
     _miseTF.text = @"20";

@@ -55,7 +55,7 @@
 
 - (void) addCard: (Carte *) Card
 {
-    NSLog(@"%@ > %@",_name, [Card description]);
+    
     if ([[Card number] intValue] == 1) {
         
         _joker++;
