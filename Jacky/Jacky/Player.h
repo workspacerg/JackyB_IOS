@@ -27,7 +27,6 @@ enum TypePlayer {
 @property (nonatomic) enum TypePlayer * type;
 @property (nonatomic) NSMutableArray * cartes;
 
-
 - (id)initWithName: (NSString *) name_;
 - (id)initCom;
 - (NSString *)description;

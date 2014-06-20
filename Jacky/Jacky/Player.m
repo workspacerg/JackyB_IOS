@@ -27,6 +27,7 @@
         _money = 400;
         _joker = 0;
         _cartes = [[NSMutableArray alloc] init];
+        
     }
     return self;
 }
@@ -54,7 +55,7 @@
 
 - (void) addCard: (Carte *) Card
 {
-    NSLog(@"%@ > %@",_name, [Card description]);
+    
     if ([[Card number] intValue] == 1) {
         
         _joker++;
@@ -84,6 +85,7 @@
     
     return result;
 }
+
 
 - (void) cleanGame
 {

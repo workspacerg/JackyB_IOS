@@ -17,26 +17,32 @@
 #pragma mark Property Player
 @property (nonatomic) Player * userPlayer;
 @property (nonatomic) Player * comPlayer;
+@property (nonatomic) Player * splitPLayer;
 
 #pragma mark Property Money
 @property (weak, nonatomic) IBOutlet UILabel *MoneyValue;
 @property (weak, nonatomic) IBOutlet UITextField *miseTF;
 @property (weak, nonatomic) IBOutlet UIButton *miseButton;
 
-#pragma mark Property Game Button
+#pragma mark Property Game
 @property (weak, nonatomic) IBOutlet UIButton *getCardButton;
 @property (weak, nonatomic) IBOutlet UIButton *doubleButton;
 @property (weak, nonatomic) IBOutlet UIButton *endGameButton;
+@property (weak, nonatomic) IBOutlet UIButton *splitButton;
+@property (nonatomic) BOOL splitMode;
 
 #pragma mark Property Affichage
 @property (nonatomic) enum resultat * resultGame;
 @property (weak, nonatomic) IBOutlet UILabel *displayWinner;
 @property (weak, nonatomic) IBOutlet UILabel *scoreUser;
+@property (weak, nonatomic) IBOutlet UILabel *scoreSplit;
 @property (weak, nonatomic) IBOutlet UILabel *scoreCom;
 @property (weak, nonatomic) IBOutlet UIView *carteView;
 @property (weak, nonatomic) IBOutlet UIView *carteViewCom;
 @property (nonatomic)  NSMutableArray * carteCom;
+@property (nonatomic)  NSMutableArray * carteSplit;
 @property (nonatomic)  NSMutableArray * cartePlayer;
+
 
 #pragma mark Property DEBUG
 @property (weak, nonatomic) IBOutlet UILabel *userCartesLabel;
