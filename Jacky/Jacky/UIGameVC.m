@@ -44,6 +44,7 @@ enum sign{
     
     _cartePlayer = [[NSMutableArray alloc] init];
     _carteCom = [[NSMutableArray alloc] init];
+    _carteSplit = [[NSMutableArray alloc] init];
     
     //self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"wall.jpg"]];
     
@@ -54,6 +55,9 @@ enum sign{
     [_getCardButton setEnabled:false];
     [_endGameButton setEnabled:false];
     [_doubleButton setEnabled:false];
+    
+    _splitButton.hidden = YES;
+    _scoreSplit.hidden = YES;
     _miseTF.text = @"20";
    
     
@@ -80,6 +84,7 @@ enum sign{
         
         [_carteCom removeAllObjects];
         [_cartePlayer removeAllObjects];
+        [_carteSplit removeAllObjects];
         
         for(UIView *subview in [_carteView subviews]) {
             [subview removeFromSuperview];
@@ -96,6 +101,9 @@ enum sign{
         [_doubleButton setEnabled:true];
         
         _displayWinner.hidden = YES;
+        _splitButton.hidden = YES;
+        
+        _splitMode = NO;
         
         
         [self updateCurrency:[_miseTF.text intValue] AndSign:enlever];
@@ -119,13 +127,14 @@ enum sign{
         tmp -= current ;
     }
     _MoneyValue.text = [NSString stringWithFormat:@"%d", tmp];
-    NSLog(@"upd current");
     _userPlayer.money = tmp;
 
 }
 
 - (IBAction)doubleMise:(id)sender {
     int tmp = [_miseTF.text intValue];
+    
+    [_doubleButton setEnabled:FALSE];
     
     if (tmp > [_MoneyValue.text intValue]) {
         
@@ -148,20 +157,32 @@ enum sign{
 - (void) intitialiseGame
 {
     
-    NSLog(@"----------------------------------------------------------");
+    
+    
     
     [_userPlayer addCard:[[Carte alloc] init]];
         NSString * nomCarte = [[[_userPlayer cartes] objectAtIndex:[_userPlayer.cartes count]-1] description];
         [_cartePlayer addObject:[[UIImageView alloc] initWithImage:[UIImage imageNamed:nomCarte]]];
-        [self updCarte];
+    [self updCarte:1];
+    
     [_comPlayer addCard:[[Carte alloc] init]];
         nomCarte = [[[_comPlayer cartes] objectAtIndex:[_comPlayer.cartes count]-1] description];
         [_carteCom addObject:[[UIImageView alloc] initWithImage:[UIImage imageNamed:nomCarte]]];
-        [self updCarte];
+    [self updCarte:0];
+    
     [_userPlayer addCard:[[Carte alloc] init]];
         nomCarte = [[[_userPlayer cartes] objectAtIndex:[_userPlayer.cartes count]-1] description];
         [_cartePlayer addObject:[[UIImageView alloc] initWithImage:[UIImage imageNamed:nomCarte]]];
-        [self updCarte];
+    [self updCarte:1];
+    
+    
+    if ([[_userPlayer.cartes objectAtIndex:0] number]== [[_userPlayer.cartes objectAtIndex:1] number]) {
+        _splitButton.hidden = NO;
+        [_splitButton setEnabled:true];
+    }
+    
+    
+    
     [self updateScore];
 
 }
@@ -171,6 +192,8 @@ enum sign{
 {
     _scoreUser.text = [[NSNumber numberWithInt:[_userPlayer getValueOfCards]] stringValue];
     _scoreCom.text  = [[NSNumber numberWithInt:[_comPlayer getValueOfCards]] stringValue];
+    _scoreSplit.text = [[NSNumber numberWithInt:[_splitPLayer getValueOfCards]] stringValue];
+    
     
     _userCartesLabel.text = @"" ;
     _comCartesLabel.text = @"" ;
@@ -187,6 +210,12 @@ enum sign{
         
     }
     
+    if (_splitMode == YES) {
+        _scoreSplit.text = [[NSNumber numberWithInt:[_splitPLayer getValueOfCards]] stringValue];
+    }
+    
+    
+    
     if([_scoreUser.text intValue] == 21)
     {
         [_getCardButton setEnabled:false];
@@ -202,23 +231,59 @@ enum sign{
 }
 
 - (BOOL) theGameIsOver{
-
-    if ([_userPlayer getValueOfCards] > 21 || [_comPlayer getValueOfCards] > 21 || ( [_comPlayer getValueOfCards] == [_userPlayer getValueOfCards] && ![_getCardButton isEnabled]) ||( [_comPlayer getValueOfCards] > [_userPlayer getValueOfCards] && ![_getCardButton isEnabled])) {
+    
+    
+    
+    // On arrete le jeu si,
+        // com >= 17
+        // user > 21
+        // user = com et l'utilisateur ne peut pas reprendre des cartes.
+        // com > user et l'utilisateur ne peut pas reprendre des cartes.
+    
+    
+    if ( [_comPlayer getValueOfCards] >= 17) {
         return true;
     }
-    else
-        return false;
+    
+    if ( [_userPlayer getValueOfCards] > 21){
+        return true;
+    }
+    
+    if ( [_comPlayer getValueOfCards] == [_userPlayer getValueOfCards] && ![_getCardButton isEnabled] ){
+        return true;
+    }
+    
+    if ( [_comPlayer getValueOfCards] > [_userPlayer getValueOfCards] && ![_getCardButton isEnabled] ){
+        return true;
+    }
+    
+    return false;
 }
 
 
 
 - (IBAction)getNewCards:(id)sender {
+    
     [_userPlayer addCard:[[Carte alloc] init]];
     [self updateScore];
     
     NSString * nomCarte = [[[_userPlayer cartes] objectAtIndex:[_userPlayer.cartes count]-1] description];
     [_cartePlayer addObject:[[UIImageView alloc] initWithImage:[UIImage imageNamed:nomCarte]]];
-    [self updCarte];
+    [self updCarte:1];
+    
+    if (_splitMode == YES) {
+        [_splitPLayer addCard:[[Carte alloc] init]];
+        [self updateScore];
+       
+        nomCarte = [[[_splitPLayer cartes] objectAtIndex:[_splitPLayer.cartes count]-1] description];
+        [_carteSplit addObject:[[UIImageView alloc] initWithImage:[UIImage imageNamed:nomCarte]]];
+        [self updCarte:2];
+        
+    }
+    else
+    {
+        _splitButton.hidden = YES;
+    }
     
 }
 - (IBAction)endGameButton:(id)sender {
@@ -229,41 +294,94 @@ enum sign{
     [_comPlayer addCard:[[Carte alloc] init]];
     NSString * nomCarte = [[[_comPlayer cartes] objectAtIndex:[_comPlayer.cartes count]-1] description];
     [_carteCom addObject:[[UIImageView alloc] initWithImage:[UIImage imageNamed:nomCarte]]];
-    [self updCarte];
+    [self updCarte:0];
 
     [self updateScore];
 
     
     // SI LE SCORE EST INFERIEUR A USER ON REJOUE
-    if ([_scoreCom.text intValue] < [_scoreUser.text intValue]) {
+    if (![self theGameIsOver]) {
         [self endGameButton:nil];
     }
 }
 
-
-#pragma mark Display
-- (void) updCarte
-{
+- (IBAction)split:(id)sender {
     
-    for (int i = 0 ; i < [_cartePlayer count]; i++) {
+    _scoreSplit.hidden = YES;
+    
+    _splitPLayer = [[Player alloc] initWithName:@"Split"];
+    
+    // Money
+    int tmp = [_miseTF.text intValue];
+    if (tmp > [_MoneyValue.text intValue]) {
         
-        [[_cartePlayer objectAtIndex:i] setFrame:CGRectMake(i * 40, 0, 80 , 80)];
-        [self.carteView addSubview:[_cartePlayer objectAtIndex:i]];
+        _displayWinner.text = @"Fond insufisant";
+        _displayWinner.hidden = NO;
+        _splitButton.hidden = YES;
         
+        return ;
     }
     
-//    for (int i = 0 ; i < [_cartePlayer count]; i++) {
-//        
-//        [[_cartePlayer objectAtIndex:i] setFrame:CGRectMake(i * 40, 70, 70, 70)];
-//        [self.carteView addSubview:[_cartePlayer objectAtIndex:i]];
-//        
-//    }
+    [self updateCurrency:tmp AndSign:(enum sign*) enlever];
+    tmp *= 2 ;
+    _miseTF.text = [NSString stringWithFormat:@"%d", tmp ];
     
-    for (int i = 0 ; i < [_carteCom count]; i++) {
+    //Split of
+    _splitMode  = YES;
+    [_splitButton setEnabled:false];
+    [_splitPLayer.cartes addObject:[_userPlayer.cartes objectAtIndex:1]];
+    [_userPlayer.cartes removeObjectAtIndex:1];
+    
+    NSString * nomCarte = [[[_splitPLayer cartes] objectAtIndex:[_splitPLayer.cartes count]-1] description];
+    [_carteSplit addObject:[[UIImageView alloc] initWithImage:[UIImage imageNamed:nomCarte]]];
+    
+
+    [[_carteView.subviews objectAtIndex:1] removeFromSuperview];
+    
+    [[_carteSplit objectAtIndex:[_carteSplit count]-1] setFrame:CGRectMake(([_carteSplit count]- 1) * 40, 80, 80 , 80)];
+    [self.carteView addSubview:[_carteSplit objectAtIndex:[_carteSplit count]-1]];
+    
+    
+    [self updateScore];
+    
+}
+
+
+#pragma mark Display
+- (void) updCarte:(int) Joueur
+{
+    
+    if (_splitMode == NO) {
+        //ComPlayer
+        if (Joueur == 0) {
+            [[_carteCom objectAtIndex:[_carteCom count]-1] setFrame:CGRectMake(([_carteCom count]- 1) * 40, 0, 80 , 80)];
+            [self.carteViewCom addSubview:[_carteCom objectAtIndex:[_carteCom count]-1]];
+        }
+        else
+        {
+            [[_cartePlayer objectAtIndex:[_cartePlayer count]-1] setFrame:CGRectMake(([_cartePlayer count]- 1) * 40, 0, 80 , 80)];
+            [self.carteView addSubview:[_cartePlayer objectAtIndex:[_cartePlayer count]-1]];
+        }
+    }
+    else{
+    
+        if (Joueur == 0) {
+            [[_carteCom objectAtIndex:[_carteCom count]-1] setFrame:CGRectMake(([_carteCom count]- 1) * 40 , 0, 80 , 80)];
+            [self.carteViewCom addSubview:[_carteCom objectAtIndex:[_carteCom count]-1]];
+        }
+        else if (Joueur == 1)
+        {
+            [[_cartePlayer objectAtIndex:[_cartePlayer count]-1] setFrame:CGRectMake(([_cartePlayer count]- 1) * 40 - 40, 0, 80 , 80)];
+            [self.carteView addSubview:[_cartePlayer objectAtIndex:[_cartePlayer count]-1]];
+        }
+        else
+        {
+            [[_carteSplit objectAtIndex:[_carteSplit count]-1] setFrame:CGRectMake(([_carteSplit count]- 1) * 40, 80, 80 , 80)];
+            [self.carteView addSubview:[_carteSplit objectAtIndex:[_carteSplit count]-1]];
         
-        [[_carteCom objectAtIndex:i] setFrame:CGRectMake(i * 40, 0, 80, 80)];
-        [self.carteViewCom addSubview:[_carteCom objectAtIndex:i]];
+        }
         
+    
     }
     
 }
@@ -281,7 +399,7 @@ enum sign{
     }
     else if ((int)_resultGame == noWiner)
     {
-        NSLog(@"Bonjour");
+    
         _displayWinner.text = @"Match null";
         [self updateCurrency:[_miseTF.text intValue] AndSign:ajouter];
     }
@@ -292,7 +410,7 @@ enum sign{
     [_doubleButton setEnabled:false];
     [_miseTF setEnabled:true];
     
-    NSLog(@"money = %d", [_userPlayer money]);
+
         _displayWinner.hidden = NO;
     
     _miseTF.text = @"20";
