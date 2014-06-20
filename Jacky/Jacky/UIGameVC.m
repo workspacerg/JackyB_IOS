@@ -176,10 +176,10 @@ enum sign{
     [self updCarte:1];
     
     
-    if ([[_userPlayer.cartes objectAtIndex:0] number]== [[_userPlayer.cartes objectAtIndex:1] number]) {
-        _splitButton.hidden = NO;
-        [_splitButton setEnabled:true];
-    }
+//    if ([[_userPlayer.cartes objectAtIndex:0] number]== [[_userPlayer.cartes objectAtIndex:1] number]) {
+//        _splitButton.hidden = NO;
+//        [_splitButton setEnabled:true];
+//    }
     
     
     
